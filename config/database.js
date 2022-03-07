@@ -19,14 +19,14 @@ const pool = mysql.createPool({
 
 const promisedPool = pool.promise()
 
-async function query(){
+async function query(sql){
     try {
-        const results = await promisedPool.query("SELECT * FROM users")
+        const results = await promisedPool.query(sql)
         return results[0]
     } catch (error) {
         console.log(error)
     }
-    
+
     return  null
 }
 
@@ -46,7 +46,7 @@ async function del(tableName,data){
     try{
        const result = await query(`DELETE FROM ${tableName} WHERE id=?`,[data])
        console.log(result)
-        return {data: data, success: true, result}
+        return {result: result, success: true}
     }catch(error){
         return {error,success:false}
     }

@@ -7,6 +7,7 @@ const {query} = require("./config/database")
 
 //Routes Imports
 //TODO: create routes files
+const userRoutes = require('./routes/userRoute')
 
 //App Config
 const app = express();
@@ -32,6 +33,7 @@ app.set("views", "views") //Route for hbs files (html)
 
 //Using Routes
 //TODO: add app.use imported routes
+app.use(userRoutes)
 app.get("/", (req, resp)=>{
   
   resp.sendFile(path.join(__dirname, "views","index.html"))
@@ -39,7 +41,7 @@ app.get("/", (req, resp)=>{
 })
 
 app.get("/datos", async (req, resp)=>{
-const result = await query()
+const result = await query("SELECT * FROM users")
 return resp.send(result)
 })
 
