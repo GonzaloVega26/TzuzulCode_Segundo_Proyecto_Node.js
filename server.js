@@ -8,6 +8,7 @@ const {query} = require("./config/database")
 //Routes Imports
 //TODO: create routes files
 const userRoutes = require('./routes/userRoute')
+const authRoutes = require ('./routes/authRoutes')
 
 //App Config
 const app = express();
@@ -17,6 +18,11 @@ app.use(express.static(path.join(__dirname, "static"))); //Path to static elemen
 //Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })); //Forms-encoded to JS objects
+
+//Static elements
+
+app.use(express.static(path.join(__dirname,"static")))
+
 
 //Handlebars Template Engine Config
 
@@ -34,6 +40,7 @@ app.set("views", "views") //Route for hbs files (html)
 //Using Routes
 //TODO: add app.use imported routes
 app.use(userRoutes)
+app.use(authRoutes)
 app.get("/", (req, resp)=>{
   
   resp.sendFile(path.join(__dirname, "views","index.html"))
