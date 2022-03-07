@@ -1,10 +1,9 @@
 const {query,insert} = require("../config/database")
 
 class User{
-
+    idUser
     constructor(user){
         this.name = user.name
-        this.username = user.username
         this.email = user.email
         this.birthday = user.birthday
         this.profilePicture = user.profilePicture
@@ -20,10 +19,10 @@ class User{
 }
 
 async save(){
+    
     const newUser = await insert("users",{
         name:this.name,
         email:this.email,
-        username:this.username,
         birthday:this.birthday,
         profilePicture:this.profilePicture,
         password:this.password
