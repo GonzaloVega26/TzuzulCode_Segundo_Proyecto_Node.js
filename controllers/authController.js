@@ -6,8 +6,8 @@ class AuthController{
         return res.render("login",{formCSS: "/css/loginCSS.css"})
     }
 
-    getSignUpView(req,res){
-        return res.render("signup",{formCSS: "css/loginCSS.css"})
+    getRegistrationView(req,res){
+        return res.render("registration",{formCSS: "css/loginCSS.css"})
     }
 
     async signUp(req,res){

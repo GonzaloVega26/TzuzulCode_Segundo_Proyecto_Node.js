@@ -7,7 +7,7 @@ const {query} = require("./config/database")
 
 //Routes Imports
 //TODO: create routes files
-const userRoutes = require('./routes/userRoute')
+const userRoutes = require('./routes/userRoutes')
 const authRoutes = require ('./routes/authRoutes')
 
 //App Config

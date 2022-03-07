@@ -6,7 +6,7 @@ const router = express.Router()
 const authController = new AuthController()
 
 router.get("/login",authController.getLoginView)
-router.get("/signup",authController.getSignUpView)
-router.post("/signup",authController.signUp)
+router.get("/registration",authController.getRegistrationView)
+router.post("/registration",authController.signUp)
 
 module.exports = router
