@@ -3,11 +3,11 @@ const User = require("../models/User")
 class AuthController{
 
     getLoginView(req,res){
-        return res.render("login",{formCSS: "/css/loginCSS.css"})
+        return res.render("login",{formCSS: "/css/loginCSS.css", documentName: "Login"})
     }
 
     getRegistrationView(req,res){
-        return res.render("registration",{formCSS: "css/loginCSS.css"})
+        return res.render("registration",{formCSS: "css/loginCSS.css", documentName: "Registration"})
     }
 
     async signUp(req,res){

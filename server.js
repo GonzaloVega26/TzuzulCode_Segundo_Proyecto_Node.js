@@ -42,8 +42,8 @@ app.set("views", "views") //Route for hbs files (html)
 app.use(userRoutes)
 app.use(authRoutes)
 app.get("/", (req, resp)=>{
+  return resp.render("home",{formCSS: "css/loginCSS.css", documentName: "Home"})
   
-  resp.sendFile(path.join(__dirname, "views","index.html"))
   
 })
 
