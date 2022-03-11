@@ -1,7 +1,7 @@
     <div class="container">
       <div class="form-container">
         <h1 class="title">Login</h1>
-        <form action="#" method="post">
+        <form action="/login" method="post">
          
           
             <div class="input-box">
@@ -31,6 +31,15 @@
               <a href="/signupgrid.html" class="link">New Member?</a>
               
         </div>
+       {{#unless validation.success}}
+            <ul>
+            {{#each validation.errors}}
+                <li class="text-red-700">
+                    {{this}}
+                </li>
+            {{/each}}
+            </ul>
+        {{/unless}}
           <div>
             <button class="button">Register</button>
           </div>

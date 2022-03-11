@@ -1,31 +1,39 @@
 //Imports
 const express = require("express");
 const path = require("path");
-const { port } = require("./config");
+const { port, secret } = require("./config");
 const { engine } = require("express-handlebars");
-const {query} = require("./config/database")
+const session = require("express-session")
+const addSession = require("./middlewares/addSession")
 
-//Routes Imports
-//TODO: create routes files
+/*---------Routes Imports---------*/
 const userRoutes = require('./routes/userRoutes')
 const authRoutes = require ('./routes/authRoutes')
+//TODO: create routes for films
 
-//App Config
+
+/*---------APP Configuration---------*/
 const app = express();
 
 app.use(express.static(path.join(__dirname, "static"))); //Path to static elements for app
 
-//Middlewares
+/*---------APP Middlewares---------*/
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })); //Forms-encoded to JS objects
+app.use(session({
+  secret:secret, //Cookie Encoder
+  resave:false, //Dont send cookie every time
+  saveUninitialized:false
+}))
+app.use(addSession)
 
-//Static elements
 
+/*---------Static Elements Route---------*/
 app.use(express.static(path.join(__dirname,"static")))
 
 
-//Handlebars Template Engine Config
 
+/*---------Handlebars Template Engine Config---------*/
 app.engine(
   "hbs",
   engine({
@@ -37,23 +45,14 @@ app.set("view engine", "hbs") //Using template engine
 app.set("views", "views") //Route for hbs files (html)
 
 
-//Using Routes
-//TODO: add app.use imported routes
+
+/*---------Using Routes---------*/
 app.use(userRoutes)
 app.use(authRoutes)
-app.get("/", (req, resp)=>{
-  return resp.render("home",{formCSS: "css/loginCSS.css", documentName: "Home"})
-  
-  
-})
-
-app.get("/datos", async (req, resp)=>{
-const result = await query("SELECT * FROM users")
-return resp.send(result)
-})
 
 
-//App port Config
+
+/*---------APP Port Config---------*/
 app.listen(port, function () {
   console.log("App listening in: http://localhost:" + port);
 });
