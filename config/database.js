@@ -33,7 +33,13 @@ async function query(sql){
 
 async function insert(tableName,data){
     try{
-        const result = await query(`INSERT INTO ${tableName}(??) VALUES(?)`,[Object.keys(data),Object.values(data)])
+        console.log(data)
+        
+        const sql = `INSERT INTO ${tableName} (name, email, birthday,profilePicture, password) `
+        + `VALUES('${data.name}', '${data.email}','${data.birthday}','${data.profilePicture}' ,'${data.password}');`
+        //const result = await query(`INSERT INTO ${tableName} (??) VALUES(?)`,[Object.keys(data),Object.values(data)])
+        console.log()
+        const result = await query(sql)
         console.log(result)
         return {idGenerated: result.insertId, succes: true}
     }catch(error){

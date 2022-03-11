@@ -1,7 +1,7 @@
 const {query,insert} = require("../config/database")
 
 class User{
-    idUser
+    id
     constructor(user){
         this.name = user.name
         this.email = user.email
@@ -18,6 +18,12 @@ class User{
     return await query("SELECT * FROM users")
 }
 
+static async readByEmail(email){
+    const user = await query(`SELECT * FROM users WHERE email = '${email}'`)
+    console.log(user)
+    return user
+}
+
 async save(){
     
     const newUser = await insert("users",{
@@ -27,7 +33,7 @@ async save(){
         profilePicture:this.profilePicture,
         password:this.password
     })
-    this.idUser = newUser
+    this.id = newUser
 }
 
 async update(newUser){
@@ -41,13 +47,16 @@ async delete(){
 
 validate(){
     let result = {sucess:true,errors:[]}
-    if(!(this.name && this.username && this.email && this.password && this.passwordRepeated)){
+    if(!(this.name && this.email && this.password && this.confirmPassword)){
         result.sucess = false
         result.errors.push("Rellena todos los campos")
     }
-    if(this.password!==this.passwordRepeated){
+    if(this.password!==this.confirmPassword){
         result.sucess = false
         result.errors.push("Las contraseñas no coinciden")
+    }
+    if(this.profilePicture.length === 0){
+        this.profilePicture=null
     }
     return result
 }
