@@ -11,11 +11,12 @@ class User{
         this.confirmPassword = user.confirmPassword
     }
 
-
-
  //El metodo puede ser utilizado sin crear una instancia
- static async readAll(){
+static async readAll(){
     return await query("SELECT * FROM users")
+}
+static async readOne(id){
+    return await query("SELECT * FROM users WHERE idUser=" + id)
 }
 
 static async readByEmail(email){
@@ -32,30 +33,33 @@ async save(){
         profilePicture:this.profilePicture,
         password:this.password
     })
-    this.id = newUser
+    this.idUser = newUser
+    console.log("En User")
+    console.log(newUser)
+    return this.idUser
 }
 
 async update(newUser){
-    const id = await query("UPDATE users SET ? WHERE idUser ?" ,[newUser,this.idUser])
+    const id = await query("UPDATE users SET ? WHERE idUser = ?" ,[newUser,this.idUser])
 }
 
-async delete(){
-    await query("DELETE FROM users WHERE idUser = ?",[this.idUser])
+static async delete(id){
+    await query("DELETE FROM users WHERE idUser = " + id)
 }
 
 
 validate(){
-    let result = {sucess:true,errors:[]}
-    if(!(this.name && this.email && this.password && this.confirmPassword)){
-        result.sucess = false
+    let result = {success:true, errors:[]}
+    if(!(this.name && this.email && this.birthday && this.password && this.confirmPassword)){
+        result.success = false
         result.errors.push("Rellena todos los campos")
     }
     if(this.password!==this.confirmPassword){
-        result.sucess = false
+        result.success = false
         result.errors.push("Las contraseñas no coinciden")
     }
     if(this.profilePicture.length === 0){
-        this.profilePicture=null
+        this.profilePicture='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpbPpWCdbVZP5eHwbuND4LmHOUqQBjKAiT9Q&usqp=CAU'
     }
     return result
 }

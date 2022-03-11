@@ -1,26 +1,13 @@
-<nav class="navbar">
-  <div class="navigation">
-    <ul>
-      <li><a href="/">Home</a></li>
+<header>
+        <img class="logo" src="/img/logo.png" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/movies">Movies</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <a class="ingresar" href="/login">Login</a>
+        <a class="ingresar" href="/registration">Register</a>
+</header>
 
-    </ul>
-  </div>
-  <div class="registration-buttons">
-    <ul>
-      {{#if session.loggedIn}}
-        <li><a href="/logout">Log out</a></li>
-      {{else}}
-        <li><a href="/login">Log in</a></li>
-      {{/if}}
-      
-      {{#if session.loggedIn}}
-        <li><a href="/userProfile">My Profile</a></li>
-      {{else}}
-        <li><a href="/registration">Register</a></li>
-      {{/if}}
-      
-
-    </ul>
-  </div>
-
-</nav>
