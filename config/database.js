@@ -53,9 +53,10 @@ function query(sql,data){
 }
 
 async function insert(tableName,data){
+    console.log("en db")
     try{
         const result = await query(`INSERT INTO ${tableName}(??) VALUES(?)`,[Object.keys(data),Object.values(data)])
-        //console.log(result)
+        console.log(result)
         return {success:true,id:result.insertId}
     }catch(error){
         return {error,success:false}

@@ -34,6 +34,8 @@ async save(){
         password:this.password
     })
     this.idUser = newUser
+    console.log("En User")
+    console.log(newUser)
     return this.idUser
 }
 
@@ -47,17 +49,17 @@ static async delete(id){
 
 
 validate(){
-    let result = {sucess:true, errors:[]}
+    let result = {success:true, errors:[]}
     if(!(this.name && this.email && this.birthday && this.password && this.confirmPassword)){
-        result.sucess = false
+        result.success = false
         result.errors.push("Rellena todos los campos")
     }
     if(this.password!==this.confirmPassword){
-        result.sucess = false
+        result.success = false
         result.errors.push("Las contraseñas no coinciden")
     }
     if(this.profilePicture.length === 0){
-        this.profilePicture=null
+        this.profilePicture='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpbPpWCdbVZP5eHwbuND4LmHOUqQBjKAiT9Q&usqp=CAU'
     }
     return result
 }

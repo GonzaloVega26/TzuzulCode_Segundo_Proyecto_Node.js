@@ -51,8 +51,11 @@ class AuthController{
         
         const newUser = new User(req.body)
         const validation = newUser.validate()
-        if(validation.sucess){
+        console.log(validation)
+        if(validation.success){
             await newUser.save()
+            console.log("en authcontro")
+            console.log(newUser)
             return res.redirect("/")
         }
         
