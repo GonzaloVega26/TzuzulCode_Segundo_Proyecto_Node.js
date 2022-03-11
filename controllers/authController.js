@@ -21,12 +21,13 @@ class AuthController{
         const newUser = new User(req.body)
         const validation = newUser.validate()
         console.log(validation)
+        console.log(newUser);
         if(validation.sucess){
             await newUser.save()
             return res.redirect("/")
         }
         
-        return res.render("signup",{validation,user:newUser})
+        return res.render("registration",{formCSS: "css/loginCSS.css",validation,user:newUser})
     }
 }
 

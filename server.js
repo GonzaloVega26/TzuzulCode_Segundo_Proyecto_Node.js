@@ -9,6 +9,7 @@ const {query} = require("./config/database")
 //TODO: create routes files
 const userRoutes = require('./routes/userRoutes')
 const authRoutes = require ('./routes/authRoutes')
+const movieRoutes = require ('./routes/movieRoutes')
 
 //App Config
 const app = express();
@@ -41,16 +42,18 @@ app.set("views", "views") //Route for hbs files (html)
 //TODO: add app.use imported routes
 app.use(userRoutes)
 app.use(authRoutes)
-app.get("/", (req, resp)=>{
-  
-  resp.sendFile(path.join(__dirname, "views","index.html"))
-  
-})
+app.use(movieRoutes)
 
-app.get("/datos", async (req, resp)=>{
-const result = await query("SELECT * FROM users")
-return resp.send(result)
-})
+// app.get("/", (req, resp)=>{
+  
+//   resp.sendFile(path.join(__dirname, "views","index.html"))
+  
+// })
+
+// app.get("/datos", async (req, resp)=>{
+// const result = await query("SELECT * FROM users")
+// return resp.send(result)
+// })
 
 
 //App port Config
