@@ -51,7 +51,6 @@ class AuthController{
         
         const newUser = new User(req.body)
         const validation = newUser.validate()
-        
         if(validation.sucess){
             await newUser.save()
             return res.redirect("/")

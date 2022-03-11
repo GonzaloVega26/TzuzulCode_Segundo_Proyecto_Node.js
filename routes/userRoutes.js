@@ -6,7 +6,10 @@ const router = express.Router()
 const userController = new UserController()
 
 
-router.get("/users",userController.getUsersView)
+router.get("/",userController.getUsersView)
+router.delete("/eliminar-usuario/:id", userController.deleteUserView)
+
+//router.get("/api/registrar-usuario", userController.addUserView)
 
 router.get("/userProfile", userController.getUserProfileView)
 

@@ -9,7 +9,8 @@ const addSession = require("./middlewares/addSession")
 /*---------Routes Imports---------*/
 const userRoutes = require('./routes/userRoutes')
 const authRoutes = require ('./routes/authRoutes')
-//TODO: create routes for films
+const movieRoutes = require ('./routes/movieRoutes')
+
 
 
 /*---------APP Configuration---------*/
@@ -49,8 +50,7 @@ app.set("views", "views") //Route for hbs files (html)
 /*---------Using Routes---------*/
 app.use(userRoutes)
 app.use(authRoutes)
-
-
+app.use(movieRoutes)
 
 /*---------APP Port Config---------*/
 app.listen(port, function () {
