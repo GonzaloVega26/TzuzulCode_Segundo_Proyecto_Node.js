@@ -40,8 +40,6 @@ class AuthController{
         
             return res.redirect("/")
     
-
-        
     }
 
     logOut(req,res){
@@ -61,6 +59,8 @@ class AuthController{
         
         return res.render("registration",{validation,user:newUser, formCSS: "css/loginCSS.css"})
     }
+
+     
 }
 
 module.exports = AuthController

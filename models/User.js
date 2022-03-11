@@ -20,7 +20,6 @@ class User{
 
 static async readByEmail(email){
     const user = await query(`SELECT * FROM users WHERE email = '${email}'`)
-    console.log(user)
     return user
 }
 

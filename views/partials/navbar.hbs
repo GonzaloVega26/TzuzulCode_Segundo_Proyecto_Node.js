@@ -12,7 +12,13 @@
       {{else}}
         <li><a href="/login">Log in</a></li>
       {{/if}}
-      <li><a href="/registration">Register</a></li>
+      
+      {{#if session.loggedIn}}
+        <li><a href="/userProfile">My Profile</a></li>
+      {{else}}
+        <li><a href="/registration">Register</a></li>
+      {{/if}}
+      
 
     </ul>
   </div>

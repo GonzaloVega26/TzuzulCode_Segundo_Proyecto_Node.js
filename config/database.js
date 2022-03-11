@@ -33,14 +33,12 @@ async function query(sql){
 
 async function insert(tableName,data){
     try{
-        console.log(data)
-        
         const sql = `INSERT INTO ${tableName} (name, email, birthday,profilePicture, password) `
         + `VALUES('${data.name}', '${data.email}','${data.birthday}','${data.profilePicture}' ,'${data.password}');`
         //const result = await query(`INSERT INTO ${tableName} (??) VALUES(?)`,[Object.keys(data),Object.values(data)])
-        console.log()
+        
         const result = await query(sql)
-        console.log(result)
+        
         return {idGenerated: result.insertId, succes: true}
     }catch(error){
         return {error,success:false}
@@ -51,7 +49,7 @@ async function insert(tableName,data){
 async function del(tableName,data){
     try{
        const result = await query(`DELETE FROM ${tableName} WHERE id=?`,[data])
-       console.log(result)
+      
         return {result: result, success: true}
     }catch(error){
         return {error,success:false}

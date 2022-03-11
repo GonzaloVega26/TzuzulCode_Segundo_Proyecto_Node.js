@@ -10,6 +10,10 @@ class UserController{
             hasUsers:data.length > 0
         })
     }
+
+    getUserProfileView(req,res){
+        return res.render("profile",{formCSS: "css/loginCSS.css"})
+    }
 }
 
 module.exports = UserController
