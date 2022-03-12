@@ -14,6 +14,8 @@
             {{!-- <p>{{this.sinopsis}}</p> --}}
             {{!-- <p>{{this.stock}}</p> --}}
             <a href="#">Alquilar</a>
+            <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
+            <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a>
           </div>
         </div>
         {{/each}}

@@ -2,12 +2,21 @@
         <img class="logo" src="/img/logo.png" alt="logo">
         <nav>
             <ul class="nav_links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/movies">Movies</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a class="menu" href="/">Home</a></li>
+                <li><a class="menu" href="/movies">Movies</a></li>
+                <li><a class="menu" href="#">Contact</a></li>
             </ul>
         </nav>
-        <a class="ingresar" href="/login">Login</a>
-        <a class="ingresar" href="/registration">Register</a>
+        {{#if session.loggedIn}}
+        <ul class="nav_links">
+            <li><a class="menu" href="/profile">Mi Perfil</a></li>
+            <li><a class="ingresar" href="/logout">Cerrar sesion</a></li>
+        </ul>
+        {{else}}
+            <ul class="nav_links">
+            <li><a class="ingresar" href="/login">Login</a></li>
+            <li><a class="ingresar" href="/registration">Register</a></li>
+        </ul>
+        {{/if}}
 </header>
 

@@ -1,8 +1,18 @@
 
 <div class="container">
     <div class="form-container">
-      <form action="/register-movie" method="post">
-        <h1 class="title">Register Movie</h1>
+      <form action="/edit-movie" method="post">
+        <h1 class="title">Edit Movie</h1>
+        <div class="input-box">
+          <label for="precio"><i class="uil uil-lock-alt icon"></i> </label>
+          <input
+            type="number"
+            name="idMovie"
+            id="idMovie"
+            placeholder="Enter the price of the movie"
+            value="{{movie.idMovie}}"
+          />
+        </div>
         <div class="input-box">
           <label for="nombre"><i class="uil uil-user icon"></i> </label>
           <input
@@ -10,6 +20,7 @@
             name="nombre"
             id="nombre"
             placeholder="Enter the name of the movie"
+            value="{{movie.nombre}}"
           />
         </div>
         
@@ -20,6 +31,7 @@
             name="precio"
             id="precio"
             placeholder="Enter the price of the movie"
+            value="{{movie.precio}}"
           />
         </div>
         <div class="input-box">
@@ -31,6 +43,7 @@
             name="portada"
             id="portada"
             placeholder="Enter URL image"
+            value="{{movie.portada}}"
           />
         </div>
         <div class="input-box">
@@ -40,6 +53,7 @@
             name="stock"
             id="stock"
             placeholder="Enter the stock of the film"
+            value="{{movie.stock}}"
           />
         </div>
         <div class="input-box">
@@ -51,13 +65,13 @@
             name="sinopsis"
             id="sinopsis"
             placeholder="Enter the synopsis of the movie"
+            value="{{movie.sinopsis}}"
           />
         </div>
         
         <div>
-          <button class="button">Register</button>
+          <button class="button">Edit</button>
         </div>
       </form>
     </div>
   </div>
-

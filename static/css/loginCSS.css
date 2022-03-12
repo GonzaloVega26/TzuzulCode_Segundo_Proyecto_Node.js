@@ -38,9 +38,10 @@ margin-bottom: 5px;
 }
 
 .ingresar:hover{
-background-color: #E6AC5C;
-color: white;
-}
+  background-color: #E6AC5C;
+  color: white;
+  }
+
 
 header{
   display: flex;
@@ -64,13 +65,16 @@ header{
   padding: 0px 20px;
 }
 
-.nav_links li a{
+.nav_links li .menu{
   transition: all 0.3s ease 0s;
 }
 
-.nav_links li a:hover{
+.nav_links li .menu:hover{
   color: #E6AC5C;
 }
+
+
+
 
 button{
   padding: 9px 25px;

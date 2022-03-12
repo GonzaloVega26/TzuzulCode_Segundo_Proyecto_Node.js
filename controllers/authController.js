@@ -8,6 +8,7 @@ class AuthController{
     }
 
     getLoginView(req,res){
+        // console.log(req.session)
         return res.render("login",{formCSS: "/css/loginCSS.css", documentName: "Login"})
     }
 
@@ -17,28 +18,32 @@ class AuthController{
 
     async login(req, res){
         const userCredential = req.body
-        const user = (await User.readByEmail(userCredential.email))[0]
-        
-        
+        const user = await User.readByEmail(userCredential.email)
+        if(user.length === 0){
+            return res.render("login",{
+                formCSS: "/css/loginCSS.css",
+                validation:{
+                errors:["Usuario no registrado"]
+            }})
+        }
         //TODO: add check for user not found in db
         // if(user.length === 0){
         //     return res.render("login",{validation:{succes: false,
         //         errors:["Usuario no registrado"]
         //     }})
         // }
-       
-        if(user.password!==userCredential.password){
-            return res.render("login",{validation:{
+        if(user[0].password!==userCredential.password){
+            return res.render("login",{
+                formCSS: "css/loginCSS.css",
+                validation:{
                 errors:["Credenciales icorrectas"]
-            }, formCSS: "css/loginCSS.css"})
-        }
-
+            }})
+        }    
         /*---------Session Info---------*/
         req.session.loggedIn = true
-        req.session.username = user.username
-        req.session.idUser = user.id
-        
-            return res.redirect("/")
+        req.session.email = user[0].email
+        req.session.idUser = user[0].idUser
+        return res.redirect("/")
     
     }
 

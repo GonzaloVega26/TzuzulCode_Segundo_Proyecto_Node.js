@@ -14,6 +14,10 @@ class Movie{
     return await query("SELECT * FROM movies")
 }
 
+static async readOne(id){
+    return await query("SELECT * FROM movies WHERE idMovie=" + id)
+}
+
 async save(){
     
     const newMovie = await insert("movies",{
@@ -23,17 +27,16 @@ async save(){
         stock:this.stock,
         sinopsis:this.sinopsis
     })
-    this.idMovie = newMovie
+    this.idMovie = newMovie.idMovie
 }
 
-async update(newMovie){
-    const id = await query("UPDATE movies SET ? WHERE id = ?" ,[newMovie,this.idMovie])
+static async update(newMovie){
+    const id = await query("UPDATE movies SET ? WHERE idMovie = ?" ,[newMovie, newMovie.idMovie])
 }
 
-async delete(){
-    await query("DELETE FROM movies WHERE id = ?",[this.idMovie])
+static async delete(id){
+    await query("DELETE FROM movies WHERE idMovie = " + id)
 }
-
 
 validate(){
     let result = {sucess:true,errors:[]}

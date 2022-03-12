@@ -20,7 +20,7 @@ static async readOne(id){
 }
 
 static async readByEmail(email){
-    const user = await query(`SELECT * FROM users WHERE email = '${email}'`)
+    const user = await query("SELECT * FROM users WHERE email = ?", [email])
     return user
 }
 
