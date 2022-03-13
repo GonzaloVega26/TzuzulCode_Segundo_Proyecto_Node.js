@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-03-2022 a las 06:44:14
+-- Tiempo de generación: 13-03-2022 a las 19:41:09
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.8
 
@@ -26,111 +26,24 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `movies`
 --
-
-CREATE TABLE `movies` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
-  `portada` varchar(200) DEFAULT NULL,
-  `precio` int(11) NOT NULL,
-  `stock` int(11) NOT NULL,
-  `sinopsis` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `movies`
---
-
-INSERT INTO `movies` (`id`, `nombre`, `portada`, `precio`, `stock`, `sinopsis`) VALUES
-(4, 'EL PECADO', 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/7Dd75aNfNCpbUlF63tS565G3J59.jpg', 300, 2, 'El hermano mayor de Adam murió en un accidente de coche hace un año, por lo que su familia no ha vuelto a ser la misma desde entonces. Mientras sus padres luchan para hacer frente a su dolor, Adam (un niño de 10 años), no puede evitar sentirse culpable por la muerte de su hermano y siente que está solo en el mundo.');
+-- Error leyendo la estructura de la tabla segundo_proyecto_backend.movies: #1932 - Table 'segundo_proyecto_backend.movies' doesn't exist in engine
+-- Error leyendo datos de la tabla segundo_proyecto_backend.movies: #1064 - Algo está equivocado en su sintax cerca 'FROM `segundo_proyecto_backend`.`movies`' en la linea 1
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `renta`
 --
-
-CREATE TABLE `renta` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
-  `id_pelicula` int(11) DEFAULT NULL,
-  `fecha_renta` date DEFAULT NULL,
-  `fecha_dev` date DEFAULT NULL,
-  `fecha_real_dev` date NOT NULL,
-  `estado` tinyint(1) DEFAULT NULL,
-  `comisión` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Error leyendo la estructura de la tabla segundo_proyecto_backend.renta: #1932 - Table 'segundo_proyecto_backend.renta' doesn't exist in engine
+-- Error leyendo datos de la tabla segundo_proyecto_backend.renta: #1064 - Algo está equivocado en su sintax cerca 'FROM `segundo_proyecto_backend`.`renta`' en la linea 1
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `users`
 --
-
-CREATE TABLE `users` (
-  `idUser` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `email` text NOT NULL,
-  `birthday` date NOT NULL,
-  `profilePicture` text NOT NULL,
-  `password` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `movies`
---
-ALTER TABLE `movies`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `renta`
---
-ALTER TABLE `renta`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_pelicula` (`id_pelicula`);
-
---
--- Indices de la tabla `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`idUser`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `movies`
---
-ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `renta`
---
-ALTER TABLE `renta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `users`
---
-ALTER TABLE `users`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `renta`
---
-ALTER TABLE `renta`
-  ADD CONSTRAINT `renta_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `movies` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `renta_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`idUser`) ON UPDATE CASCADE;
+-- Error leyendo la estructura de la tabla segundo_proyecto_backend.users: #1932 - Table 'segundo_proyecto_backend.users' doesn't exist in engine
+-- Error leyendo datos de la tabla segundo_proyecto_backend.users: #1064 - Algo está equivocado en su sintax cerca 'FROM `segundo_proyecto_backend`.`users`' en la linea 1
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
