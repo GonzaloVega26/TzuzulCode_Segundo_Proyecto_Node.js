@@ -7,6 +7,7 @@ class User{
         this.email = user.email
         this.birthday = user.birthday
         this.profilePicture = user.profilePicture
+        this.typeUser = user.typeUser
         this.password = user.password
         this.confirmPassword = user.confirmPassword
     }
@@ -30,12 +31,13 @@ async save(){
         name:this.name,
         email:this.email,
         birthday:this.birthday,
+        typeUser:this.typeUser,
         profilePicture:this.profilePicture,
         password:this.password
     })
     this.idUser = newUser
-    console.log("En User")
-    console.log(newUser)
+    // console.log("En User")
+    // console.log(newUser)
     return this.idUser
 }
 
@@ -50,7 +52,7 @@ static async delete(id){
 
 validate(){
     let result = {success:true, errors:[]}
-    if(!(this.name && this.email && this.birthday && this.password && this.confirmPassword)){
+    if(!(this.name && this.email && this.birthday && this.password && this.confirmPassword && this.typeUser)){
         result.success = false
         result.errors.push("Rellena todos los campos")
     }

@@ -7,8 +7,9 @@ class MovieController{
         //console.log(data)
         return res.render("movie",{
             formCSS: "/css/loginCSS.css",
-            movies:data,
-            hasMovies:data.length > 0
+            movies: data,
+            hasMovies: data.length > 0,
+            typeUser: req.session.typeUser
         })
     }
 
@@ -62,7 +63,7 @@ class MovieController{
 
         const newMovie = new Movie(req.body)
         newMovie.idMovie = req.body.idMovie
-        console.log(newMovie)
+        //console.log(newMovie)
         const validation = newMovie.validate()
         if(validation.sucess){
             await Movie.update(newMovie)

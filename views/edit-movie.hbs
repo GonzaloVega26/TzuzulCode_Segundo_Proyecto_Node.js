@@ -4,13 +4,14 @@
       <form action="/edit-movie" method="post">
         <h1 class="title">Edit Movie</h1>
         <div class="input-box">
-          <label for="precio"><i class="uil uil-lock-alt icon"></i> </label>
+          <label for="idMovie"><i class="uil uil-lock-alt icon"></i> </label>
           <input
             type="number"
             name="idMovie"
             id="idMovie"
             placeholder="Enter the price of the movie"
             value="{{movie.idMovie}}"
+            readonly
           />
         </div>
         <div class="input-box">
@@ -35,7 +36,7 @@
           />
         </div>
         <div class="input-box">
-          <label for="profile_picture"
+          <label for="portada"
             ><i class="uil uil-image icon"></i
           ></label>
           <input

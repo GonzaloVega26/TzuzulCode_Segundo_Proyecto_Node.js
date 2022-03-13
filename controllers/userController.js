@@ -4,11 +4,12 @@ class UserController{
 
     async getUsersView(req,res){
         const data = await User.readAll()
-        //console.log(data)
-        return res.render("home",{
+        //console.log(req.session.typeUser);
+        return res.render("users",{
             formCSS: "/css/loginCSS.css",
             users:data,
-            hasUsers:data.length > 0
+            hasUsers:data.length > 0,
+            typeUser: req.session.typeUser
         })
     }
 
@@ -26,6 +27,11 @@ class UserController{
     getUserProfileView(req,res){
         return res.render("profile",{formCSS: "css/loginCSS.css"})
     }
+
+    getHomeView(req,res){
+        return res.render("home",{formCSS: "css/loginCSS.css"})
+    }
+
     async deleteUserView(req,res){
         const id = req.params.id
         const data = await User.delete(id)

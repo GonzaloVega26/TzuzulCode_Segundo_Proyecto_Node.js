@@ -1,22 +1,47 @@
 <header>
         <img class="logo" src="/img/logo.png" alt="logo">
-        <nav>
-            <ul class="nav_links">
-                <li><a class="menu" href="/">Home</a></li>
-                <li><a class="menu" href="/movies">Movies</a></li>
-                <li><a class="menu" href="#">Contact</a></li>
-            </ul>
-        </nav>
         {{#if session.loggedIn}}
-        <ul class="nav_links">
-            <li><a class="menu" href="/profile">Mi Perfil</a></li>
-            <li><a class="ingresar" href="/logout">Cerrar sesion</a></li>
-        </ul>
+            {{#if session.typeUser}}
+                <nav>
+                    <ul class="nav_links">
+                        <li><a class="menu" href="/users">Users</a></li>
+                        <li><a class="menu" href="/movies">Movies</a></li>
+                        {{!-- <li><a class="menu" href="#">Contact</a></li> --}}
+                    </ul>
+                </nav>
+            {{else}}
+                <nav>
+                    <ul class="nav_links">
+                        <li><a class="menu" href="/">Home</a></li>
+                        <li><a class="menu" href="/movies">Movies</a></li>
+                        <li><a class="menu" href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            {{/if}}
+                <ul class="nav_links">
+                    <li><a class="menu" href="/profile">My Profile</a></li>
+                    <li><a class="ingresar" href="/logout">Log Out</a></li>
+                </ul>
+            
+            {{!-- <ul class="nav_links">
+                <li><a class="ingresar" href="/login">Login</a></li>
+                <li><a class="ingresar" href="/registration">Register</a></li>
+            </ul> --}}
         {{else}}
+            <nav>
+                <ul class="nav_links">
+                    <li><a class="menu" href="/">Home</a></li>
+                    <li><a class="menu" href="/movies">Movies</a></li>
+                    <li><a class="menu" href="#">Contact</a></li>
+                </ul>
+            </nav>
             <ul class="nav_links">
-            <li><a class="ingresar" href="/login">Login</a></li>
-            <li><a class="ingresar" href="/registration">Register</a></li>
-        </ul>
-        {{/if}}
+                <li><a class="ingresar" href="/login">Login</a></li>
+                <li><a class="ingresar" href="/registration">Register</a></li>
+            </ul>
+        {{/if}}    
 </header>
+
+
+
 

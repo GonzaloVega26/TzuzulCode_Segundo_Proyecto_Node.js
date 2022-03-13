@@ -41,9 +41,15 @@ class AuthController{
         }    
         /*---------Session Info---------*/
         req.session.loggedIn = true
-        req.session.email = user[0].email
         req.session.idUser = user[0].idUser
-        return res.redirect("/")
+        if (user[0].typeUser === 1){
+            req.session.typeUser = true
+            return res.redirect("/users")
+        }
+        else {
+            req.session.typeUser = false
+            return res.redirect("/")
+        }
     
     }
 
