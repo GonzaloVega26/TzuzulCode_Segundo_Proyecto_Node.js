@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="form-container">
+      <form action="/register-rental" method="post">
+        <h1 class="title">Register Rental</h1>
+        <div class="input-box">
+          <label for="idUser"><i class="uil uil-user icon"></i> </label>
+          <input
+            type="number"
+            name="idUser"
+            id="idUser"
+            placeholder="Enter user id"
+            value="{{session.idUser}}"
+            readonly
+          />
+        </div>
+        
+        <div class="input-box">
+          <label for="idMovie"><i class="uil uil-envelope icon"></i> </label>
+          <input
+            type="number"
+            name="idMovie"
+            id="idMovie"
+            placeholder="Enter movie id"
+            value="{{idMovie}}"
+          />
+        </div>
+        <div class="input-box">
+          <label for="fechaAlquiler"
+            ><i class="uil uil-image icon"></i
+          ></label>
+          <input
+            type="text"
+            name="fechaAlquiler"
+            id="fechaAlquiler"
+            placeholder="Enter rental date"
+            value="{{formatDate today}}"
+          />
+        </div>
+        <div class="input-box">
+          <label for="fechaDev"><i class="uil uil-lock-alt icon"></i> </label>
+          <input
+            type="date"
+            name="fechaDev"
+            id="fechaDev"
+            placeholder="Enter the return date"
+          />
+        </div>
+        <div class="input-box">
+          <label for="estado"
+            ><i class="uil uil-lock-alt icon"></i>
+          </label>
+          <input
+            type="number"
+            name="estado"
+            id="estado"
+            placeholder="Enter rental status"
+          />
+        </div>
+        
+        <div>
+          <button class="button">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>

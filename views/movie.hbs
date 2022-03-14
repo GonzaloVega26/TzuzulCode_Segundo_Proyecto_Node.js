@@ -45,8 +45,11 @@
               <p>${{this.precio}}</p>
               {{!-- <p>{{this.sinopsis}}</p> --}}
               {{!-- <p>{{this.stock}}</p> --}}
-              <a href="#">Alquilar</a>
-            
+              {{#if this.stock}}
+              <a href="/register-rental/{{this.idMovie}}">Alquilar</a>
+              {{else}}
+              <h3>Sin stock</h3>
+              {{/if}}
                 {{!-- <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
                 <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a> --}}
               

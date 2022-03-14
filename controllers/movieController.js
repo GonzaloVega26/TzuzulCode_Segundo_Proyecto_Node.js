@@ -4,7 +4,6 @@ class MovieController{
 
     async getMoviesView(req,res){
         const data = await Movie.readAll()
-        //console.log(data)
         return res.render("movie",{
             formCSS: "/css/loginCSS.css",
             movies: data,

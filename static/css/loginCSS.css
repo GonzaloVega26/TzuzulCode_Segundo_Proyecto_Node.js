@@ -8,8 +8,8 @@
 body{
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-rows: 10vh 80vh;
+    /* display: grid;
+    grid-template-rows: 10vh auto; */
     font-family: "Montserrat", sans-serif;
     background: linear-gradient(45deg, rgb(161, 181, 125,1) 50%, rgb(211, 236, 167,1) 50%);
     background-repeat: no-repeat;
@@ -92,8 +92,10 @@ button:hover{
     display: grid;
     padding-top: 5px;
     grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 200px;
     
     
 }

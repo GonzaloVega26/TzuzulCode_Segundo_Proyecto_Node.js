@@ -5,11 +5,13 @@ const { port, secret } = require("./config");
 const { engine } = require("express-handlebars");
 const session = require("express-session")
 const addSession = require("./middlewares/addSession")
+const { DateTime } = require("luxon");
 
 /*---------Routes Imports---------*/
 const userRoutes = require('./routes/userRoutes')
 const authRoutes = require ('./routes/authRoutes')
 const movieRoutes = require ('./routes/movieRoutes')
+const rentalRoutes = require('./routes/rentalRoutes')
 
 
 
@@ -35,10 +37,15 @@ app.use(express.static(path.join(__dirname,"static")))
 
 
 /*---------Handlebars Template Engine Config---------*/
-app.engine(
-  "hbs",
-  engine({
+app.engine("hbs", engine({
     extname: "hbs",
+    // partialsDir:path.join(__dirname,"views","components"),
+    helpers:{
+        formatDate:function(date){
+            const newDate = new DateTime(date)
+            return newDate.toFormat("yyyy-MM-dd")
+        }
+    }
   })
 );
 
@@ -51,6 +58,7 @@ app.set("views", "views") //Route for hbs files (html)
 app.use(userRoutes)
 app.use(authRoutes)
 app.use(movieRoutes)
+app.use(rentalRoutes)
 
 /*---------APP Port Config---------*/
 app.listen(port, function () {

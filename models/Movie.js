@@ -19,7 +19,6 @@ class Movie{
     }
 
     async save(){
-        
         const newMovie = await insert("movies",{
             nombre:this.nombre,
             precio:this.precio,
