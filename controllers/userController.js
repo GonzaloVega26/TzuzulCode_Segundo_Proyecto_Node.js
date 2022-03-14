@@ -30,9 +30,7 @@ class UserController{
         return res.render("profile",{formCSS: "css/profile.css", userData: user})
     }
 
-    getHomeView(req,res){
-        return res.render("home",{formCSS: "css/loginCSS.css"})
-    }
+    
 
     async deleteUserView(req,res){
         const id = req.params.id

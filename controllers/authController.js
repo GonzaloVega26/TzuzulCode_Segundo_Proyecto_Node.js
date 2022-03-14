@@ -1,9 +1,11 @@
 const User = require("../models/User")
-
+const Movie = require("../models/Movie")
 class AuthController{
 
-    getHomeView(req, resp){
-        return resp.render("home",{formCSS: "css/loginCSS.css", documentName: "Home"})
+    async getHomeView(req, resp){
+        const pictureOfFilms = (await Movie.readAll())
+        console.log(pictureOfFilms)
+        return resp.render("home",{formCSS: "css/home.css", documentName: "Home", movies: pictureOfFilms})
         
     }
 

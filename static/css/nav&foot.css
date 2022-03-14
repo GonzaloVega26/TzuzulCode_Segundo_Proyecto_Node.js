@@ -31,12 +31,16 @@ footer{
 }
 
 .socials{
+  width: 100%;
+  
 	list-style: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 20px 0 50px 0;
+  padding-bottom: 5px;
+  background-color: #19282F;
 }
+
 
 .socials li{
 	margin: 0 10px;
@@ -79,7 +83,7 @@ footer{
 
 
 /* HEADER NAV */
-li, a, button{
+.navbar li, .navbar a, .navbar button{
     font-weight: 500;
     font-size: 16px;
     color: #edf0f1;

@@ -6,7 +6,7 @@ const router = express.Router()
 const userController = new UserController()
 
 
-router.get("/",userController.getHomeView)
+
 router.delete("/delete-user/:id", userController.deleteUserView)
 
 //router.get("/api/registrar-usuario", userController.addUserView)

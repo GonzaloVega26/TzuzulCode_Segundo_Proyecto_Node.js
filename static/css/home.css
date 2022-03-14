@@ -1,0 +1,68 @@
+.general-container{
+    height: min-content;
+}
+.carousel{
+    position:relative;
+    height: 400px;
+    width: 50%;
+    margin: 15px auto;
+}
+
+.image{
+    position: absolute;
+   height: 100%;
+    object-fit: cover;
+    left: 50%;
+    transform: translateX(-50%);
+    
+}
+
+.track-container{
+height: 100%;
+position: relative;
+z-index: 1;
+overflow: hidden;
+}
+
+.track{
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: transform 250ms ease-in;
+}
+
+.slide{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+.carousel-button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+.button-left{
+    left: -10px;
+    z-index: 2;
+  
+}
+.button-right{
+    right: -10px;
+    z-index: 2;
+    
+}
+
+
+
+.is-hidden{
+    display: none;
+}
