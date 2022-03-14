@@ -29,7 +29,8 @@ class RentalController{
     async addRentalView(req, res){
         const data = req.body
         const newRental = new Rental(data)
-        await newRental.updateStock(newRental.idMovie)
+        const add = false
+        await newRental.updateStock(newRental.idMovie, add)
         await newRental.save()
         //console.log(data)
         return res.redirect("/rentals/"+req.session.idUser)
@@ -56,7 +57,14 @@ class RentalController{
 
     async returnMovieView(req, res){
         const id = req.params.id
-        const data = await Rental.returnMovie(id)
+        const data = await Rental.readOne(id)
+        const rental = new Rental(data[0])
+        rental.idRental = id
+        const data2 = await Movie.readOne(rental.idMovie)
+        const movie = new Movie(data2[0])
+        movie.idMovie = data2[0].idMovie
+        const register = await rental.returnMovie(rental, movie, id)
+        // const stock = await rental.updateStock(movie[0].idMovie, true)
         return res.redirect("/rentals/" + req.session.idUser)
     }
     // getUserProfileView(req,res){

@@ -23,7 +23,6 @@ static async readRentalUser(id){
 }
 
 
-
 static async readOne(id){
     return await query("SELECT * FROM rentals WHERE idRental=" + id)
 }
@@ -58,15 +57,35 @@ static async delete(id){
     await query("DELETE FROM rentals WHERE idRental = " + id)
 }
 
-async updateStock(id){
-    await query("UPDATE movies SET stock = stock - 1 WHERE idMovie = " + id)
+async updateStock(id, add){
+    if (add){
+        await query("UPDATE movies SET stock = stock + 1 WHERE idMovie = " + id)
+    }
+    else{
+        await query("UPDATE movies SET stock = stock - 1 WHERE idMovie = " + id)
+    }
+    
 }
 
-static async returnMovie(id){
+async returnMovie(rental, movie, id){
+    // const rental = Rental.readOne(id)
+    // console.log(rental);
+
     const tiempoTranscurrido = Date.now();
     const today = new Date(tiempoTranscurrido);
-    const newDate = new DateTime(today)
-    await query("UPDATE rentals SET fechaRealDev = '" + newDate.toFormat("yyyy-MM-dd") + "', estado = 1 WHERE idRental = " + id)
+    const newDateToday = new DateTime(today)
+
+    if (rental.fechaDev < today){
+        const comision = movie.precio*10/100
+        await query("UPDATE rentals SET fechaRealDev = '" + newDateToday.toFormat("yyyy-MM-dd") + "', estado = 1, comision = " + comision + " WHERE idRental = " + id)
+    }
+    else{
+        await query("UPDATE rentals SET fechaRealDev = '" + newDateToday.toFormat("yyyy-MM-dd") + "', estado = 1 WHERE idRental = " + id)
+    }
+
+    await rental.updateStock(movie.idMovie, true)
+    
+    
 }
 
 validate(){
