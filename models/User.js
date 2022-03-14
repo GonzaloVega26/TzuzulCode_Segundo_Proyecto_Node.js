@@ -17,7 +17,7 @@ static async readAll(){
     return await query("SELECT * FROM users")
 }
 static async readOne(id){
-    return await query("SELECT * FROM users WHERE idUser=" + id)
+    return await query("SELECT * FROM users WHERE idUser= ?", [id])
 }
 
 static async readByEmail(email){

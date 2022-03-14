@@ -1,0 +1,32 @@
+.profile-info-container{
+    display: grid;
+    grid-template-columns: 20% auto;
+    
+    justify-items: center;
+}
+
+
+/* Aside */
+.profile-picture img{
+    
+    width: 100px;
+    border-radius: 50%;
+    
+}
+.profile-picture{
+    border: 1px solid grey
+}
+/* Main */
+.profile-info-container .main-info{
+    width: 100%;
+    
+}
+.main-info .title{
+    width: fit-content;
+    margin-left: 25%;
+}
+
+/* Form */
+ .profile-form{
+    justify-self: left;
+}

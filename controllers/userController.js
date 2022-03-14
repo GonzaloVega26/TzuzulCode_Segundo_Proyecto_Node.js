@@ -24,8 +24,10 @@ class UserController{
         })
     }
 
-    getUserProfileView(req,res){
-        return res.render("profile",{formCSS: "css/loginCSS.css"})
+   async getUserProfileView(req,res){
+       const user = (await  User.readOne(req.session.idUser))[0]
+       console.log(user)
+        return res.render("profile",{formCSS: "css/profile.css", userData: user})
     }
 
     getHomeView(req,res){

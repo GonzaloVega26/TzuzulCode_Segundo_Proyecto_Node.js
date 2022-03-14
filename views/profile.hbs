@@ -1,1 +1,16 @@
 <h1>My profile</h1>
+<div class="profile-info-container">
+    
+    <aside class="profile-picture">
+        <img src="{{userData.profilePicture}}" alt="Profile Picture" srcset="">
+    </aside>
+    <main class="main-info">
+        <h2 class="title">Hello There, {{userData.name}}</h2>
+
+        <form class= "profile-form" action="#" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name">
+        </form>
+
+    </main>
+</div>
