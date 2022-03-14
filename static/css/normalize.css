@@ -347,3 +347,25 @@
   [hidden] {
     display: none;
   }
+
+
+
+  /* Html and body Style */
+
+  @import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap");
+*{
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    /* display: grid;
+    grid-template-rows: 10vh auto; */
+    font-family: "Montserrat", sans-serif;
+    background: linear-gradient(45deg, rgb(161, 181, 125,1) 50%, rgb(211, 236, 167,1) 50%);
+    background-repeat: no-repeat;
+    
+}
