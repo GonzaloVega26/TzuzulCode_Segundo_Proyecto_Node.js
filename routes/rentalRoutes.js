@@ -9,6 +9,7 @@ router.get("/rentals", rentalController.getRentalsView)
 router.get("/rentals/:id", rentalController.getRentalsUserView)
 router.post("/register-rental", rentalController.addRentalView)
 router.get("/register-rental/:id", rentalController.getAddRentalView)
+router.get("/return-movie/:id", rentalController.returnMovieView)
 // router.get("/",userController.getHomeView)
 // router.delete("/delete-user/:id", userController.deleteUserView)
 

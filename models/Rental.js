@@ -1,4 +1,5 @@
 const {query,insert} = require("../config/database")
+const { DateTime } = require("luxon");
 
 class Rental{
     idRental
@@ -18,7 +19,7 @@ static async readAll(){
 }
 
 static async readRentalUser(id){
-    return await query("SELECT * FROM rentals, users, movies WHERE rentals.idUser = users.idUser and rentals.idMovie = movies.idMovie and rentals.idUser=" + id)
+    return await query("SELECT * FROM rentals, users, movies WHERE rentals.idUser = users.idUser and rentals.idMovie = movies.idMovie and rentals.estado = 0 and rentals.idUser=" + id)
 }
 
 
@@ -59,6 +60,13 @@ static async delete(id){
 
 async updateStock(id){
     await query("UPDATE movies SET stock = stock - 1 WHERE idMovie = " + id)
+}
+
+static async returnMovie(id){
+    const tiempoTranscurrido = Date.now();
+    const today = new Date(tiempoTranscurrido);
+    const newDate = new DateTime(today)
+    await query("UPDATE rentals SET fechaRealDev = '" + newDate.toFormat("yyyy-MM-dd") + "', estado = 1 WHERE idRental = " + id)
 }
 
 validate(){

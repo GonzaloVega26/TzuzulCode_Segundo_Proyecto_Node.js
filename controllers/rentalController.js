@@ -5,7 +5,7 @@ class RentalController{
 
     async getRentalsView(req, res){
         const data = await Rental.readAll()
-        console.log(data);
+        //console.log(data);
         return res.render("rentals",{
             formCSS: "/css/loginCSS.css",
             rentals:data,
@@ -17,7 +17,7 @@ class RentalController{
     async getRentalsUserView(req, res){
         const id = req.params.id
         const data = await Rental.readRentalUser(id)
-        console.log(data);
+        //console.log(data);
         return res.render("rentals",{
             formCSS: "/css/loginCSS.css",
             rentals:data,
@@ -54,6 +54,11 @@ class RentalController{
         
     }
 
+    async returnMovieView(req, res){
+        const id = req.params.id
+        const data = await Rental.returnMovie(id)
+        return res.redirect("/rentals/" + req.session.idUser)
+    }
     // getUserProfileView(req,res){
     //     return res.render("profile",{formCSS: "css/loginCSS.css"})
     // }
