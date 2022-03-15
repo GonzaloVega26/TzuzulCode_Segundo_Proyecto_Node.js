@@ -132,6 +132,10 @@ footer{
   
   .nav_links li .menu{
     transition: all 0.3s ease 0s;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none
   }
   
   .nav_links li .menu:hover{
