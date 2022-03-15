@@ -1,7 +1,7 @@
 const {query,insert} = require("../config/database")
 
 class User{
-    id
+    idUser
     constructor(user){
         this.name = user.name
         this.email = user.email
@@ -42,7 +42,16 @@ async save(){
 }
 
 async update(newUser){
-    const id = await query("UPDATE users SET ? WHERE idUser = ?" ,[newUser,this.idUser])
+    
+    try {
+        const id = await query("UPDATE users SET ? WHERE idUser = ?" ,[newUser,this.idUser])
+        
+    return id;
+    } catch (error) {
+        console.log(error)
+    }
+    
+    
 }
 
 static async delete(id){

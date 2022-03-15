@@ -8,12 +8,21 @@
 
   <main class="main-info" id="main-info">
     <h2 class="title">Hello There, {{userData.name}}</h2>
-
+     
+      
     <div class="form-container" id="general-form">
       <button class="edit-btn" id="edit-btn">
         <i class="uil uil-edit"></i>
       </button>
-      <form class="profile-form" action="#" method="post">
+
+      <form class="profile-form" id="general-info" action="/update-user" method="post">
+       {{!-- Hidden data just for easy form --}}
+        <input type="hidden" name="idUser" value="{{userData.idUser}}">
+        <input type="hidden" name="profilePicture" value="{{userData.profilePicture}}">
+        <input type="hidden" name="typeUser" value="{{userData.typeUser}}">
+       {{!-- Hidden data just for easy form --}}
+
+
         <div class="profile-input-box">
           <label for="name">Name</label>
           <input
@@ -21,7 +30,7 @@
             type="text"
             name="name"
             disabled
-            value="`{{userData.name}}`"
+            value="{{userData.name}}"
           />
         </div>
 
@@ -43,16 +52,17 @@
             type="date"
             name="birthday"
             disabled
-            {{userData.birthday}}
-          />
+            
+            value={{formatDate userData.birthday}}
+          />           
         </div>
 
         <div class="profile-input-box is-hidden">
           <label for="password">Password</label>
           <input
-            class="read-only is-hidden"
+            class="read-only"
             type="password"
-            name="name"
+            name="password"
             disabled
             placeholder="Enter your Password"
           />
@@ -63,37 +73,45 @@
           <input
             class="read-only"
             type="password"
-            name="confirm-password"
+            name="confirmPassword"
             disabled
             placeholder="Confirm your Password"
           />
         </div>
 
-        <button class="save-btn" id="save-btn">Save Changes</button>
+        <button class="save-btn is-hidden" id="save-btn">Save Changes</button>
       </form>
         
      </div>
 
      <div class="form-container is-hidden" id="password-form">
       
-      <form class="profile-form" action="#" method="post">
+      <form class="profile-form" action="/update-user" method="post">
+       {{!-- Hidden data just for easy form --}}
+        <input type="hidden" name="idUser" value="{{userData.idUser}}">
+        <input type="hidden" name="name" value="{{userData.name}}">
+        <input type="hidden" name="email" value="{{userData.email}}">
+        <input type="hidden" name="birthday" value="{{formatDate userData.birthday}}">
+        <input type="hidden" name="profilePicture" value="{{userData.profilePicture}}">
+        <input type="hidden" name="typeUser" value="{{userData.typeUser}}">
+       {{!-- Hidden data just for easy form --}}
        
         <div class="profile-input-box">
-          <label for="password">Password</label>
+          <label for="old-password">Password</label>
           <input
             class="read-only"
             type="password"
-            name="name"
+            name="old-password"
 
             placeholder="Enter your Password"
           />
         </div>
          <div class="profile-input-box">
-          <label for="new-password ">New Password</label>
+          <label for="password ">New Password</label>
           <input
             class="read-only"
             type="password"
-            name="new-password"
+            name="password"
             
             placeholder="Enter your New Password"
           />
@@ -104,7 +122,7 @@
           <input
             class="read-only"
             type="password"
-            name="confirm-password"
+            name="confirmPassword"
             
             placeholder="Confirm your Password"
           />

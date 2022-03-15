@@ -4,7 +4,7 @@ class AuthController{
 
     async getHomeView(req, resp){
         const pictureOfFilms = (await Movie.readAll())
-        console.log(pictureOfFilms)
+        
         return resp.render("home",{formCSS: "css/home.css", documentName: "Home", movies: pictureOfFilms})
         
     }

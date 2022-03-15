@@ -53,10 +53,10 @@ function query(sql,data){
 }
 
 async function insert(tableName,data){
-    console.log("en db")
+    
     try{
         const result = await query(`INSERT INTO ${tableName}(??) VALUES(?)`,[Object.keys(data),Object.values(data)])
-        console.log(result)
+        
         return {success:true,id:result.insertId}
     }catch(error){
         return {error,success:false}
@@ -67,7 +67,7 @@ async function insert(tableName,data){
 async function del(tableName,data){
     try{
        const result = await query(`DELETE FROM ${tableName} WHERE id=?`,[data])
-       //console.log(result)
+       
         return {result: result, success: true}
     }catch(error){
         return {error,success:false}

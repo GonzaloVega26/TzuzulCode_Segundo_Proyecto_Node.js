@@ -1,11 +1,14 @@
 console.log("test")
 const editButton = document.getElementById('edit-btn')
-const inputList = document.querySelectorAll('input')
-console.log(inputList)
+const generalInformationForm = document.getElementById('general-info')
+
 editButton.addEventListener('click',e=>{
+    const inputList= generalInformationForm.querySelectorAll('input')
+    editButton.classList.add('is-hidden')
+
 inputList.forEach((input,index)=>{
     input.removeAttribute("disabled")
-    document.querySelectorAll('.is-hidden').forEach(item=>{
+    generalInformationForm.querySelectorAll('.is-hidden').forEach(item=>{
         item.classList.remove('is-hidden')
     })
 })

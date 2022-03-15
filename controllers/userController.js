@@ -49,6 +49,25 @@ class UserController{
         //     hasUsers:data.length > 0
         // })
     }
+
+    async updateUser(req,res){
+        const data = req.body
+        
+        const updatedUser = new User(data)
+        
+        const validation = updatedUser.validate()
+        
+        if(validation.success){
+            updatedUser.idUser= data.idUser
+            delete updatedUser.confirmPassword
+            await updatedUser.update(updatedUser)
+            return res.redirect('/')
+        }
+    
+        
+       return res.render("profile",{validation,userData:updatedUser, formCSS: "css/profile.css"})
+       
+    }
 }
 
 module.exports = UserController
