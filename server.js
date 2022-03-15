@@ -42,7 +42,6 @@ app.engine(
     helpers: {
       formatDate: function (date) {
         const newDate = DateTime.fromJSDate(date);
-
         return newDate.toFormat("yyyy-MM-dd");
       },
     },
