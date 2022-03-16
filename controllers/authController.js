@@ -65,10 +65,16 @@ class AuthController{
         const newUser = new User(req.body)
         const validation = newUser.validate()
         console.log(validation)
+
+        if(newUser.email === "admin@admin.com"){
+            newUser.typeUser = 1;
+        }else{
+            newUser.typeUser = 0;
+        }
+
         if(validation.success){
             await newUser.save()
-            console.log("en authcontro")
-            console.log(newUser)
+            
             return res.redirect("/")
         }
         
