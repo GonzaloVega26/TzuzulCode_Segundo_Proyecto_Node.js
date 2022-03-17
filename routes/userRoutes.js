@@ -16,4 +16,6 @@ router.get("/users", userController.getUsersView)
 
 router.post("/update-user", userController.updateUser)
 
+router.post("/admin-privilege",userController.adminPrivilege)
+
 module.exports = router

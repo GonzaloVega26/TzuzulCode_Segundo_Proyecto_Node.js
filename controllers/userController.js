@@ -1,3 +1,4 @@
+const { readByEmail, readOne } = require("../models/User");
 const User = require("../models/User");
 
 class UserController {
@@ -60,6 +61,31 @@ class UserController {
       formCSS: "css/profile.css",
     });
   }
+
+  async adminPrivilege(req,res){
+    const data = req.body
+    const userData = (await readByEmail(data.email))[0]
+    userData.typeUser === 1 ? userData.typeUser = 0 : userData.typeUser = 1
+
+    const user = new User(userData)
+    const admin = (await readOne(req.session.idUser))[0]
+    delete user.confirmPassword
+    user.idUser = userData.idUser
+    
+    if(admin.password === data.password){
+      const result = await user.update(user); 
+      return res.redirect('/')
+    }
+
+    return res.render("profile", {
+      
+      userData: admin,
+      formCSS: "css/profile.css",
+    });
+   
+  }
 }
+
+
 
 module.exports = UserController;
