@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2022 a las 04:47:57
+-- Tiempo de generación: 19-03-2022 a las 23:08:14
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.8
 
@@ -41,8 +41,21 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`idMovie`, `nombre`, `portada`, `precio`, `stock`, `sinopsis`) VALUES
-(4, 'EL PECADO', 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/7Dd75aNfNCpbUlF63tS565G3J59.jpg', 300, 0, 'El hermano mayor de Adam murió en un accidente de coche hace un año, por lo que su familia no ha vuelto a ser la misma desde entonces. Mientras sus padres luchan para hacer frente a su dolor, Adam (un niño de 10 años), no puede evitar sentirse culpable por la muerte de su hermano y siente que está solo en el mundo.'),
-(6, 'EL AÑO', 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/ubaCN0FjWhxiu1uHhI9oXSgalVK.jpg', 300, 0, 'Max es inventor, pero no el mejor. Pero cuando su familia es raptada para no asistir al festival anual de Invenciones por su principal competidor, Max es el único que puede salvar a los Slim.');
+(8, 'Aguas profundas', 'https://img.repelis.id/cover/aguas-profundas.png', 100, 5, 'Un marido adinerado, que permite que su esposa tenga relaciones extramatrimoniales para evitar el divorcio, se convierte en el principal sospechoso de la desaparición de los amantes de ella… Adaptación de la novela de Patricia Highsmith.'),
+(9, 'Master', 'https://img.repelis.id/cover/master.png', 80, 5, 'Dos mujeres afroamericanas comienzan a compartir experiencias inquietantes en una universidad predominantemente blanca en Nueva Inglaterra.'),
+(10, 'El rescate de Ruby', 'https://img.repelis.id/cover/el-rescate-de-ruby.png', 100, 3, 'Ruby tiene mucha energía. Su dueño original la entregó a la Sociedad de Rhode Island para la Prevención de la Crueldad hacia los Animales debido a su personalidad generalmente «ingobernable».'),
+(11, 'The Bunker Game', 'https://img.repelis.id/cover/the-bunker-game.png', 50, 4, 'Laura, de 25 años, es actriz en un juego L.A.R.P. (Live Action Role Playing), en el que los participantes interpretan a los supervivientes de una guerra atómica que viven bajo tierra en un búnker sellado.'),
+(12, 'Hoy se arregla el mundo', 'https://img.repelis.id/cover/hoy-se-arregla-el-mundo.png', 60, 8, 'David Samarás, «el Griego», es el productor general del popular talk show «Hoy se arregla el mundo», donde presunta gente común dirime conflictos de relación, de pareja, de amistad, de trabajo, de padres e hijos. '),
+(13, 'Adam by Eve', 'https://img.repelis.id/cover/adam-by-eve-a-live-in-animation.png', 30, 3, 'El anime, la acción en vivo y la música de la artista de vanguardia Eve se entrelazan en esta experiencia sonora de ensueño inspirada en la historia de Adán y Eva.'),
+(14, 'El Proyecto Adam', 'https://img.repelis.id/cover/el-proyecto-adam.png', 120, 5, 'Adam Reed es un piloto de caza que viaja en el tiempo. Cuando se estrella en el año 2022, conoce a su yo de 12 años y juntos emprenden una misión para salvar el futuro.'),
+(16, 'Taylor Tomlinson', 'https://img.repelis.id/cover/taylor-tomlinson-look-at-you.png', 50, 2, 'Rupturas. Terapia. Flequillos. Taylor ha pasado por mucho desde su crisis de la veintena. Ahora, convierte sus experiencias con la salud mental en una reveladora comedia.'),
+(17, 'Offseason', 'https://img.repelis.id/cover/offseason.png', 70, 3, 'Al recibir una misteriosa carta en la que se le informa de que la tumba de su madre ha sido objeto de vandalismo, Marie viaja al desolado pueblo de la isla donde está enterrada. Justo cuando llega, la isla cierra por temporada, dejando a Marie atrapada en una pesadilla.'),
+(18, 'Goyo: En letra de otro', 'https://img.repelis.id/cover/goyo-en-letra-de-otro.png', 75, 3, 'El primer especial musical de En Letra de Otro liderado por una mujer que recorre sus favoritos personales nos transporta a los vibrantes paisajes de su Condoto natal en el Chocó, Colombia. '),
+(19, 'Gold', 'https://img.repelis.id/cover/gold-2-1615182242.jpg', 80, 6, 'Ambientada en 1948, narra la historia de la primera medalla olímpica -en hockey sobre hierba- que ganó la India post colonial, una vez independizada de Gran Bretaña.'),
+(20, 'Lucy and Desi', 'https://img.repelis.id/cover/lucy-and-desi-2-1646622374.jpg', 25, 3, 'Explore la improbable asociación y el legado perdurable de una de las parejas de poder más prolíficas de la historia del entretenimiento. Lucille Ball y Desi Arnaz lo arriesgaron todo para estar juntos.'),
+(21, 'The Batman', 'https://img.repelis.id/cover/the-batman.png', 150, 1, 'Cuando un asesino se dirige a la élite de Gotham con una serie de maquinaciones sádicas, un rastro de pistas crípticas envía Batman a una investigación en los bajos fondos. '),
+(22, 'El hilo invisible', 'https://img.repelis.id/cover/il-filo-invisibile-2-1646572805.jpg', 50, 2, 'Un hijo adolescente con dos padres hace un documental sobre ellos, pero un giro argumental en la vida real de su familia le sorprende.'),
+(23, 'El paraíso que sobrevive', 'https://img.repelis.id/cover/el-paraiso-que-sobrevive-un-legado-familiar.png', 50, 2, 'Mientras el desierto del Kalahari afronta una estación seca cada vez más larga, las diversas manadas y clanes deben apoyarse en el poder de la familia para sobrevivir.');
 
 -- --------------------------------------------------------
 
@@ -58,22 +71,9 @@ CREATE TABLE `rentals` (
   `fechaDev` date NOT NULL,
   `fechaRealDev` date DEFAULT NULL,
   `estado` tinyint(1) NOT NULL,
-  `comision` int(11) DEFAULT NULL
+  `comision` int(11) DEFAULT NULL,
+  `calification` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `rentals`
---
-
-INSERT INTO `rentals` (`idRental`, `idUser`, `idMovie`, `fechaAlquiler`, `fechaDev`, `fechaRealDev`, `estado`, `comision`) VALUES
-(1, 10, 4, '2022-03-13', '2022-03-31', NULL, 0, NULL),
-(2, 10, 4, '2022-03-13', '2022-03-20', NULL, 1, NULL),
-(3, 10, 4, '0000-00-00', '2022-03-20', NULL, 0, NULL),
-(4, 10, 6, '0000-00-00', '2022-03-31', NULL, 0, NULL),
-(5, 10, 6, '0000-00-00', '2022-03-28', NULL, 0, NULL),
-(6, 10, 4, '0000-00-00', '2022-03-23', NULL, 0, NULL),
-(7, 13, 4, '2022-03-13', '2022-03-31', NULL, 0, NULL),
-(8, 13, 4, '2022-03-13', '2022-03-29', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -96,9 +96,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`idUser`, `name`, `email`, `birthday`, `profilePicture`, `password`, `typeUser`) VALUES
-(9, 'Sergio A. Gamarra', 'sergioagamarra@gmail.com', '2022-03-10', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', '1234', 1),
-(10, 'Sergio Antonio', 'sergioagamarra1@gmail.com', '2022-03-10', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', '1234', 2),
-(13, 'ECO-FIBRA', 'sergioagamarra2@gmail.com', '2022-03-13', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', '1234', 2);
+(1, 'Sergio A. Gamarra', 'sergioagamarra@gmail.com', '1994-05-06', 'https://scontent.fjuj1-1.fna.fbcdn.net/v/t1.18169-9/19601433_101693093810292_806589173561043320_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=K5tsUSxMZyQAX-LmHZm&_nc_ht=scontent.fjuj1-1.fna&oh=00_AT8v9HG9bsm5SN08BJ3mJYxmOeiehiMDrHC-XUv5VUmKgQ&oe=625CB8B5', '1234', 1),
+(14, 'Tzuzul', 'tzuzulcode@gmail.com', '1999-06-17', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpbPpWCdbVZP5eHwbuND4LmHOUqQBjKAiT9Q&usqp=CAU', '1234', 0);
 
 --
 -- Índices para tablas volcadas
@@ -132,19 +131,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `idMovie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idMovie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `idRental` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idRental` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas

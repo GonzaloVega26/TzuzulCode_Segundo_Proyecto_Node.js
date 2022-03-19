@@ -3,7 +3,7 @@
   <ul class="people_list">
   
       <h1 class="titulo">LIST OF MOVIES</h1>
-      <div class="container">
+      <div class="container-search">
         <div class="form-search-container">
           <form action="/movies" method="post"> 
             <input type="text"
@@ -31,6 +31,9 @@
                 <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a>
               {{else}}
                 {{#if this.stock}}
+                <div class="sinopsis">
+                  <p class="p-sinopsis" >{{this.sinopsis}}</p>
+                </div>
                   <a href="/register-rental/{{this.idMovie}}">Alquilar</a>
                 {{else}}
                   <h3>Sin stock</h3>
@@ -41,10 +44,13 @@
           {{/each}}
         </div>
   </ul>
-  {{#if ../typeUser}}
+  {{#if typeUser}}
     <a href="/register-movie"> Register Movie</a>
   {{/if}}
 {{else}}
   <p class="p-list">Ninguna película registrada</p>
+  {{#if typeUser}}
+    <a href="/register-movie"> Register Movie</a>
+  {{/if}}
 {{/if}}
 

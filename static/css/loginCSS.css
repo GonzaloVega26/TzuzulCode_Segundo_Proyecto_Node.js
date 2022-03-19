@@ -139,6 +139,8 @@ form .input-box{
 	transition: all 400ms ease-out;
 	cursor: default;
 	background-color: #19282F;
+  display: flex;
+  flex-direction: column;
 }
 .card:hover{
 	box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
@@ -170,6 +172,18 @@ form .input-box{
 	font-size: 15px;
 	margin-bottom: 5px;
 }
+
+.card .contenido-card .sinopsis{
+  height: 180px;
+}
+
+.card .contenido-card .p-sinopsis{
+	line-height: 1.8;
+	color: white;
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+
 .card .contenido-card a{
 	display: inline-block;
 	padding: 10px;
@@ -199,22 +213,34 @@ form .input-box{
 }
 
 /****** FORM SEARCH *****/
+
+
+.container-search{
+  display: grid;
+  padding-top: 5px;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .form-search-container form{
   display: grid;
   grid-template-columns: 70% 30%;
   gap: 1rem;
-  
 }
 
-.container .form-search-container{
+.container-search .form-search-container{
   grid-column-start: 2;
   grid-column-end: 3;
   background: transparent;
   border-radius: 15px;
   padding: 10px;
+  margin: 50px;
    
 }
-.container .form-search-container input{
+.container-search .form-search-container input{
   grid-column-start: 1;
   background: white;
   border-radius: 15px;
