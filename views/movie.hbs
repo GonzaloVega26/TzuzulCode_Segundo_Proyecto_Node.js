@@ -1,39 +1,21 @@
-{{#if typeUser }}
-  {{#if hasMovies }}
-  <ul class="people_list">
-  
-      <h1 class="titulo">LIST OF MOVIES</h1>
-        <div class="container-card">
-          {{#each movies}}
-          <div class="card">
-            {{!-- <figure> --}}
-              <img src="{{this.portada}}">
-            {{!-- </figure> --}}
-            <div class="contenido-card">
-              <h3>{{this.nombre}}</h3>
-              <p>${{this.precio}}</p>
-              {{!-- <p>{{this.sinopsis}}</p> --}}
-              {{!-- <p>{{this.stock}}</p> --}}
-              {{!-- <a href="#">Alquilar</a> --}}
-            
-              <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
-              <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a>
-              
-            </div>
-          </div>
-          {{/each}}
-        </div>
-  </ul>
-  {{else}}
-    <p class="p-list">Ninguna película registrada</p>
-  {{/if}}
-  
-  <a href="/register-movie"> Register Movie</a>
-{{else}}
+{{!-- {{#if typeUser }} --}}
 {{#if hasMovies }}
   <ul class="people_list">
   
       <h1 class="titulo">LIST OF MOVIES</h1>
+      <div class="container">
+        <div class="form-search-container">
+          <form action="/movies" method="post"> 
+            <input type="text"
+                name="nameMovie"
+                id="nameMovie"
+                placeholder="Enter the name of the movie to search">
+            <div>
+              <button class="button">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
         <div class="container-card">
           {{#each movies}}
           <div class="card">
@@ -41,27 +23,28 @@
               <img src="{{this.portada}}">
             {{!-- </figure> --}}
             <div class="contenido-card">
-              <h3>{{this.nombre}}</h3>
+              <h3 id="nameMovie" class="nameMovie">{{this.nombre}}</h3>
               <p>${{this.precio}}</p>
-              {{!-- <p>{{this.sinopsis}}</p> --}}
-              {{!-- <p>{{this.stock}}</p> --}}
-              {{#if this.stock}}
-              <a href="/register-rental/{{this.idMovie}}">Alquilar</a>
+              {{#if ../typeUser}}
+
+                <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
+                <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a>
               {{else}}
-              <h3>Sin stock</h3>
+                {{#if this.stock}}
+                  <a href="/register-rental/{{this.idMovie}}">Alquilar</a>
+                {{else}}
+                  <h3>Sin stock</h3>
+                {{/if}}
               {{/if}}
-                {{!-- <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
-                <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a> --}}
-              
             </div>
           </div>
           {{/each}}
         </div>
   </ul>
-  {{else}}
-    <p class="p-list">Ninguna película registrada</p>
+  {{#if ../typeUser}}
+    <a href="/register-movie"> Register Movie</a>
   {{/if}}
-
+{{else}}
+  <p class="p-list">Ninguna película registrada</p>
 {{/if}}
-
 

@@ -12,6 +12,18 @@ class MovieController{
         })
     }
 
+    async getMovieSearchView(req, res){
+        const movie = req.body
+        const data = await Movie.searchMovie(movie.nameMovie)
+        return res.render("movie",{
+            formCSS: "/css/loginCSS.css",
+            movies: data,
+            hasMovies: data.length > 0,
+            typeUser: req.session.typeUser
+        })
+
+    }
+
     getRegisterMovieView(req,res){
         return res.render("register-movie",{formCSS: "css/loginCSS.css"})
     }

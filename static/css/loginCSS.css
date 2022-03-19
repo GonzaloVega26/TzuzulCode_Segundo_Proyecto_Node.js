@@ -197,3 +197,115 @@ form .input-box{
 .is-hidden{
     display: none;
 }
+
+/****** FORM SEARCH *****/
+.form-search-container form{
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 1rem;
+  
+}
+
+.container .form-search-container{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background: transparent;
+  border-radius: 15px;
+  padding: 10px;
+   
+}
+.container .form-search-container input{
+  grid-column-start: 1;
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.form-search-container .button{
+  /* margin: auto; */
+  grid-column-start: 3;
+  padding-bottom: 10px;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 15px;
+  background-color: #19282F;
+  background-color: #19282F;
+  cursor: pointer;
+  width: 100%;
+}
+
+/***** RATING *******/
+
+.star-widget input{
+  display: none;
+}
+
+.star-widget label{
+  font-size: 20px;
+  color: #444;
+  padding: 10px;
+  margin: 10px 0px;
+  float: right;
+  transition: all 0.2s ease;
+}
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label{
+  color: #fd4;
+}
+input:checked ~ label{
+  color: #fd4;
+}
+input#rate-5:checked ~ label{
+  color: #fe7;
+  text-shadow: 0 0 20px #952;
+}
+/* #rate-1:checked ~ form header:before{
+  content: "I just hate it ";
+}
+#rate-2:checked ~ form header:before{
+  content: "I don't like it ";
+}
+#rate-3:checked ~ form header:before{
+  content: "It is awesome ";
+}
+#rate-4:checked ~ form header:before{
+  content: "I just like it ";
+}
+#rate-5:checked ~ form header:before{
+  content: "I just love it ";
+} */
+/* .container form{
+  display: none;
+}
+input:checked ~ form{
+  display: block;
+} */
+
+
+/********* form return ****************/
+
+.form-container .return{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* grid-template-columns: auto;
+  gap: 1rem; */
+}
+.form-container .return img{
+width: 200px;
+/* grid-template-columns: auto;
+gap: 1rem; */
+}
+
+.form-container .return .input-box{
+display: grid;
+width: 80%;
+grid-template-columns: auto;
+gap: 1rem; 
+}
+.form-container .return .button{
+margin: 20px 0px;
+}

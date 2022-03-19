@@ -14,6 +14,10 @@ class Movie{
         return await query("SELECT * FROM movies")
     }
 
+    static async searchMovie(nameMovie){
+        return await query(`SELECT * FROM movies WHERE nombre LIKE "%` + nameMovie + `%"`)
+    }
+
     static async readOne(id){
         return await query("SELECT * FROM movies WHERE idMovie=" + id)
     }

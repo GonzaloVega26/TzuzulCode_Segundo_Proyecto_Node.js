@@ -26,9 +26,29 @@ class RentalController{
         })
     }
 
+    async getReturnReviewView(req, res){
+        const id = req.params.id
+        const data = await Rental.readOne(id)
+        const rental = new Rental(data[0])
+        rental.idRental = id
+        const data2 = await Movie.readOne(rental.idMovie)
+        const movie = new Movie(data2[0])
+        movie.idMovie = rental.idMovie
+        const date = Date.now();
+        const today = new Date(date);
+        rental.fechaRealDev = today
+        return res.render("reviews",{
+            formCSS: "/css/loginCSS.css",
+            rental: rental,
+            movie: movie,
+            typeUser: req.session.typeUser
+        })
+    }
+
     async addRentalView(req, res){
         const data = req.body
         const newRental = new Rental(data)
+        newRental.estado = 0
         const add = false
         await newRental.updateStock(newRental.idMovie, add)
         await newRental.save()
@@ -39,14 +59,21 @@ class RentalController{
     async getAddRentalView(req, res){
         if (req.session.loggedIn){
             const id = req.params.id
+            const data = await Movie.readOne(id)
+            const movie = new Movie(data[0])
+            movie.idMovie = data[0].idMovie
             // const movie = Movie.readOne(id)
             // console.log(movie);
-            const tiempoTranscurrido = Date.now();
-            const today = new Date(tiempoTranscurrido);
+            const date = Date.now();
+            const today = new Date(date);
+            const auxDate = Date.now()
+            const aux = new Date(auxDate)
+            const dev = new Date(aux.setDate(aux.getDate() + 7))
             return res.render("register-rental", {
                 formCSS: "/css/loginCSS.css",
-                idMovie: id,
-                today: today
+                movie: movie,
+                today: today,
+                dateDev: dev
             })
         }
         else{
@@ -56,14 +83,33 @@ class RentalController{
     }
 
     async returnMovieView(req, res){
-        const id = req.params.id
-        const data = await Rental.readOne(id)
-        const rental = new Rental(data[0])
-        rental.idRental = id
-        const data2 = await Movie.readOne(rental.idMovie)
-        const movie = new Movie(data2[0])
-        movie.idMovie = data2[0].idMovie
-        const register = await rental.returnMovie(rental, movie, id)
+        console.log(req.body);
+        const rental = new Rental(req.body)
+        rental.idRental = req.body.idRental
+
+        if (req.body.hasOwnProperty("rate-5")){
+            rental.calification = 5
+        } 
+        else if (req.body.hasOwnProperty("rate-4")) {
+            rental.calification = 4
+        }
+        else if (req.body.hasOwnProperty("rate-3")) {
+            rental.calification = 3
+        }
+        else if (req.body.hasOwnProperty("rate-2")) {
+            rental.calification = 2
+        }
+        else if (req.body.hasOwnProperty("rate-1")) {
+            rental.calification = 1
+        }
+        else{
+            rental.calification = null
+        }
+        console.log(rental);
+        const data = await Movie.readOne(rental.idMovie)
+        const movie = new Movie(data[0])
+        movie.idMovie = rental.idMovie
+        await rental.returnMovie(rental, movie)
         // const stock = await rental.updateStock(movie[0].idMovie, true)
         return res.redirect("/rentals/" + req.session.idUser)
     }

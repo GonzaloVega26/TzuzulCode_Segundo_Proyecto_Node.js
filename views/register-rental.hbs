@@ -1,9 +1,11 @@
 <div class="container">
     <div class="form-container">
-      <form action="/register-rental" method="post">
+      <form class="return" action="/register-rental" method="post">
         <h1 class="title">Register Rental</h1>
+        <img src="{{movie.portada}}">
+        <p>{{movie.nombre}}</p>
         <div class="input-box">
-          <label for="idUser"><i class="uil uil-user icon"></i> </label>
+          <label for="idUser"><i class="uil uil-user icon"></i> Usuario</label>
           <input
             type="number"
             name="idUser"
@@ -15,48 +17,38 @@
         </div>
         
         <div class="input-box">
-          <label for="idMovie"><i class="uil uil-envelope icon"></i> </label>
+          <label for="idMovie"><i class="uil uil-envelope icon"></i> Movie</label>
           <input
             type="number"
             name="idMovie"
             id="idMovie"
             placeholder="Enter movie id"
-            value="{{idMovie}}"
+            value="{{movie.idMovie}}"
+            readonly
           />
         </div>
         <div class="input-box">
-          <label for="fechaAlquiler"
-            ><i class="uil uil-image icon"></i
-          ></label>
+          <label for="fechaAlquiler"><i class="uil uil-image icon"></i> Rental Date</label>
           <input
-            type="text"
+            type="date"
             name="fechaAlquiler"
             id="fechaAlquiler"
             placeholder="Enter rental date"
             value="{{formatDate today}}"
+            readonly 
           />
         </div>
         <div class="input-box">
-          <label for="fechaDev"><i class="uil uil-lock-alt icon"></i> </label>
+          <label for="fechaDev"><i class="uil uil-lock-alt icon"></i> Return Date</label>
           <input
             type="date"
             name="fechaDev"
             id="fechaDev"
             placeholder="Enter the return date"
+            value="{{formatDate dateDev}}"
+            readonly 
           />
         </div>
-        <div class="input-box">
-          <label for="estado"
-            ><i class="uil uil-lock-alt icon"></i>
-          </label>
-          <input
-            type="number"
-            name="estado"
-            id="estado"
-            placeholder="Enter rental status"
-          />
-        </div>
-        
         <div>
           <button class="button">Register</button>
         </div>

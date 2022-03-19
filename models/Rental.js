@@ -3,14 +3,15 @@ const { DateTime } = require("luxon");
 
 class Rental{
     idRental
-    constructor(user){
-        this.idUser = user.idUser
-        this.idMovie= user.idMovie
-        this.fechaAlquiler = user.fechaAlquiler
-        this.fechaDev = user.fechaDev
-        this.fechaRealDev = user.fechaRealDev
-        this.estado = user.estado
-        this.comision = user.comision
+    constructor(rental){
+        this.idUser = rental.idUser
+        this.idMovie= rental.idMovie
+        this.fechaAlquiler = rental.fechaAlquiler
+        this.fechaDev = rental.fechaDev
+        this.fechaRealDev = rental.fechaRealDev
+        this.estado = rental.estado
+        this.comision = rental.comision
+        this.calification = rental.calification
     }
 
  //El metodo puede ser utilizado sin crear una instancia
@@ -24,7 +25,7 @@ static async readRentalUser(id){
 
 
 static async readOne(id){
-    return await query("SELECT * FROM rentals WHERE idRental=" + id)
+    return await query("SELECT * FROM rentals WHERE idRental =" + id)
 }
 
 // static async readByEmail(email){
@@ -41,7 +42,8 @@ async save(){
         fechaDev: this.fechaDev,
         fechaRealDev: this.fechaRealDev,
         estado: this.estado,
-        comision: this.comision
+        comision: this.comision,
+        calification: this.calification
     })
     this.idRental = newRental
     // console.log("En User")
@@ -68,23 +70,15 @@ async updateStock(id, add){
 }
 
 async returnMovie(rental, movie, id){
-    // const rental = Rental.readOne(id)
-    // console.log(rental);
-
-    const tiempoTranscurrido = Date.now();
-    const today = new Date(tiempoTranscurrido);
-    const newDateToday = new DateTime(today)
-
-    if (rental.fechaDev < today){
+    if (rental.fechaDev < rental.fechaRealDev){
         const comision = movie.precio*10/100
-        await query("UPDATE rentals SET fechaRealDev = '" + newDateToday.toFormat("yyyy-MM-dd") + "', estado = 1, comision = " + comision + " WHERE idRental = " + id)
+        await query("UPDATE rentals SET fechaRealDev = '" + rental.fechaRealDev + "', estado = 1, comision = " + comision + ", calification = " + rental.calification + " WHERE idRental = " + rental.idRental)
     }
     else{
-        await query("UPDATE rentals SET fechaRealDev = '" + newDateToday.toFormat("yyyy-MM-dd") + "', estado = 1 WHERE idRental = " + id)
+        await query("UPDATE rentals SET fechaRealDev = '" + rental.fechaRealDev + "', estado = 1, calification = " + rental.calification + " WHERE idRental = " + rental.idRental)
     }
 
     await rental.updateStock(movie.idMovie, true)
-    
     
 }
 
