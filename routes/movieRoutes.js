@@ -15,5 +15,7 @@ router.delete("/delete-movie/:id",movieController.deleteMovieView)
 router.get("/edit-movie/:id", movieController.getEditMovieView)
 router.post("/edit-movie", movieController.editMovieView)
 
+router.get("/movie-order-name/:order", movieController.getMoviewInOrderByName)
+router.get("/movie-order-rating", movieController.getMoviewInOrderByRating)
 
 module.exports = router

@@ -13,6 +13,19 @@ class Movie{
     static async readAll(){
         return await query("SELECT * FROM movies")
     }
+    static async readAllOrder(order){
+            console.log(order)
+            return await query(`SELECT * FROM movies ORDER BY nombre ${order}`)
+        
+    }
+//USER 1 Pelicula 8
+//SELECT * FROM movies JOIN (SELECT idMovie,SUM(calification) FROM rentals GRoUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie;
+
+    static async readAllOrderRating(){
+        
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie,SUM(calification) FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie;`)
+    
+}
 
     static async searchMovie(nameMovie){
         return await query(`SELECT * FROM movies WHERE nombre LIKE "%` + nameMovie + `%"`)

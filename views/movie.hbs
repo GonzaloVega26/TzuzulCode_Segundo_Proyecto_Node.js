@@ -5,6 +5,13 @@
       <h1 class="titulo">LIST OF MOVIES</h1>
       <div class="container-search">
         <div class="form-search-container">
+          <select name="order-movies" id="order-movies" onchange="changeOrder()">
+            <option selected value="value1">Select Order</option>
+            <option value="value2">Nombre A-Z</option>
+            <option value="value3">Nombre Z-A</option>
+            <option value="value4">Rating</option>
+            
+          </select>
           <form action="/movies" method="post"> 
             <input type="text"
                 name="nameMovie"
@@ -54,3 +61,5 @@
   {{/if}}
 {{/if}}
 
+
+<script src="/js/movies.js"></script>
