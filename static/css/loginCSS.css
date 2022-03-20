@@ -212,6 +212,9 @@ form .input-box{
     display: none;
 }
 
+.ineditable-number{
+  appearance: textfield;
+}
 /****** FORM SEARCH *****/
 
 
@@ -258,11 +261,29 @@ form .input-box{
   letter-spacing: 1px;
   border-radius: 15px;
   background-color: #19282F;
-  background-color: #19282F;
   cursor: pointer;
   width: 100%;
 }
 
+.container-search .selector-container{
+  align-self: flex-end;
+  justify-content: center;
+  width: 50%;
+  background-color: #19282F;
+  color: #fff;
+  padding: .5em;
+  padding-right: 2.5em; 
+  border-radius: 15px;
+  margin-left: 50px;
+}
+.selector-container select{
+  margin-left: 30px;
+  justify-self: center;
+  align-self: center;
+  color: white;
+  background: transparent;
+  border: none;
+}
 /***** RATING *******/
 
 .star-widget input{

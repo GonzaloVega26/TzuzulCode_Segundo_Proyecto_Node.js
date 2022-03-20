@@ -5,8 +5,9 @@
         <img src="{{movie.portada}}">
         <p>{{movie.nombre}}</p>
         <div class="input-box">
-          <label for="idUser"><i class="uil uil-user icon"></i> Usuario</label>
+          <label for="idUser"><i class="uil uil-list-ol"></i> Usuario</label>
           <input
+          class="ineditable-number"
             type="number"
             name="idUser"
             id="idUser"
@@ -17,8 +18,9 @@
         </div>
         
         <div class="input-box">
-          <label for="idMovie"><i class="uil uil-envelope icon"></i> Movie</label>
+          <label for="idMovie"><i class="uil uil-list-ol"></i> Movie</label>
           <input
+            class="ineditable-number"
             type="number"
             name="idMovie"
             id="idMovie"
@@ -28,7 +30,7 @@
           />
         </div>
         <div class="input-box">
-          <label for="fechaAlquiler"><i class="uil uil-image icon"></i> Rental Date</label>
+          <label for="fechaAlquiler"><i class="uil uil-calendar-alt"></i>Rental Date</label>
           <input
             type="date"
             name="fechaAlquiler"
@@ -39,7 +41,7 @@
           />
         </div>
         <div class="input-box">
-          <label for="fechaDev"><i class="uil uil-lock-alt icon"></i> Return Date</label>
+          <label for="fechaDev"><i class="uil uil-calendar-alt"></i>Return Date</label>
           <input
             type="date"
             name="fechaDev"
