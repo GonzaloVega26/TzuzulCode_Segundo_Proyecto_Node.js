@@ -14,7 +14,7 @@ class Movie{
         return await query("SELECT * FROM movies")
     }
     static async readAllOrder(order){
-            console.log(order)
+            //console.log(order)
             return await query(`SELECT * FROM movies ORDER BY nombre ${order}`)
         
     }
@@ -23,9 +23,13 @@ class Movie{
 
     static async readAllOrderRating(){
         
-        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie,SUM(calification) FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie;`)
-    
-}
+        // return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie,SUM(calification) as rating FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC;`)
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC;`)
+    }
+
+    static async readAllOrderMoreViews(){
+        return await query("SELECT * FROM movies LEFT JOIN (SELECT idMovie, COUNT(idRental) as rating FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC")
+    }
 
     static async searchMovie(nameMovie){
         return await query(`SELECT * FROM movies WHERE nombre LIKE "%` + nameMovie + `%"`)

@@ -23,15 +23,27 @@ class MovieController{
         })
     }
 
-    async getMoviewInOrderByRating(req,res){
+    async getMoviewInOrderByRating(req, res){
         
         const data = await Movie.readAllOrderRating()
+        //console.log(data);
         return res.render("movie",{
             formCSS: "/css/loginCSS.css",
             movies: data,
             hasMovies: data.length > 0,
             typeUser: req.session.typeUser
         })
+    }
+
+    async getMoviewInOrderByMoreViews(req, res){
+        const data = await Movie.readAllOrderMoreViews()
+        return res.render("movie",{
+            formCSS: "/css/loginCSS.css",
+            movies: data,
+            hasMovies: data.length > 0,
+            typeUser: req.session.typeUser
+        })
+
     }
 
     async getMovieSearchView(req, res){

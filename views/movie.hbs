@@ -1,46 +1,46 @@
 {{!-- {{#if typeUser }} --}}
-{{#if hasMovies }}
+
   <ul class="people_list">
-  
-      <h1 class="titulo">LIST OF MOVIES</h1>
-      <div class="container-search">
-        <div class="form-search-container">
-          <select name="order-movies" id="order-movies" onchange="changeOrder()">
-            <option selected value="value1">Select Order</option>
-            <option value="value2">Nombre A-Z</option>
-            <option value="value3">Nombre Z-A</option>
-            <option value="value4">Rating</option>
-            
-          </select>
-          <form action="/movies" method="post"> 
-            <input type="text"
-                name="nameMovie"
-                id="nameMovie"
-                placeholder="Enter the name of the movie to search">
-            <div>
-              <button class="button">Search</button>
-            </div>
-          </form>
-        </div>
+    <h1 class="titulo">LIST OF MOVIES</h1>
+    <div class="container-search">
+      <div class="form-search-container">
+        <select name="order-movies" id="order-movies" onchange="changeOrder()">
+          <option selected value="value1">Select Order</option>
+          <option value="value2">Nombre A-Z</option>
+          <option value="value3">Nombre Z-A</option>
+          <option value="value4">Rating</option>
+          <option value="value5">More Views</option>
+          
+        </select>
+        <form action="/movies" method="post"> 
+          <input type="text"
+              name="nameMovie"
+              id="nameMovie"
+              placeholder="Enter the name of the movie to search">
+          <div>
+            <button class="button">Search</button>
+          </div>
+        </form>
       </div>
-        <div class="container-card">
-          {{#each movies}}
+    </div>
+    {{#if hasMovies }}
+      <div class="container-card">
+        {{#each movies}}
           <div class="card">
             {{!-- <figure> --}}
-              <img src="{{this.portada}}">
+            <img src="{{this.portada}}">
             {{!-- </figure> --}}
             <div class="contenido-card">
               <h3 id="nameMovie" class="nameMovie">{{this.nombre}}</h3>
               <p>${{this.precio}}</p>
               {{#if ../typeUser}}
-
                 <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
                 <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a>
               {{else}}
                 {{#if this.stock}}
-                <div class="sinopsis">
-                  <p class="p-sinopsis" >{{this.sinopsis}}</p>
-                </div>
+                  <div class="sinopsis">
+                    <p class="p-sinopsis" >{{this.sinopsis}}</p>
+                  </div>
                   <a href="/register-rental/{{this.idMovie}}">Alquilar</a>
                 {{else}}
                   <h3>Sin stock</h3>
@@ -48,18 +48,19 @@
               {{/if}}
             </div>
           </div>
-          {{/each}}
-        </div>
+        {{/each}}
+      </div>
+      {{#if typeUser}}
+        <a href="/register-movie"> Register Movie</a>
+      {{/if}}
+    {{else}}
+      <p class="p-list">Ninguna película registrada</p>
+      {{#if typeUser}}
+        <a href="/register-movie"> Register Movie</a>
+      {{/if}}
+    {{/if}}
   </ul>
-  {{#if typeUser}}
-    <a href="/register-movie"> Register Movie</a>
-  {{/if}}
-{{else}}
-  <p class="p-list">Ninguna película registrada</p>
-  {{#if typeUser}}
-    <a href="/register-movie"> Register Movie</a>
-  {{/if}}
-{{/if}}
+  
 
 
 <script src="/js/movies.js"></script>

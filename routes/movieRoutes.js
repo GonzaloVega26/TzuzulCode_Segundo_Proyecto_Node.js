@@ -17,5 +17,6 @@ router.post("/edit-movie", movieController.editMovieView)
 
 router.get("/movie-order-name/:order", movieController.getMoviewInOrderByName)
 router.get("/movie-order-rating", movieController.getMoviewInOrderByRating)
+router.get("/movie-order-more-views", movieController.getMoviewInOrderByMoreViews)
 
 module.exports = router
