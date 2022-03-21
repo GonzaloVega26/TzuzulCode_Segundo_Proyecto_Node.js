@@ -29,22 +29,25 @@
       <div class="container-card">
         {{#each movies}}
           <div class="card">
-            {{!-- <figure> --}}
+            
             <img src="{{this.portada}}">
-            {{!-- </figure> --}}
+            
             <div class="contenido-card">
               <h3 id="nameMovie" class="nameMovie">{{this.nombre}} </h3>
               <p>${{this.precio}}</p>
-                <p> {{#if this.rating}} 
+                  <p> {{#if this.rating}} 
                     ⭐ {{twoDecimals this.rating}}
                     {{/if}} 
                     {{#if this.views}} 
                       <i class="uil uil-eye"></i></i> {{this.views}}
-                    {{/if}}</p>
+                    {{/if}}
+                  </p>
+
                 {{#if ../typeUser}}
                   <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
                   <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a>
                 {{else}}
+
                   {{#if this.stock}}
                     <div class="sinopsis">
                       <p class="p-sinopsis" >{{this.sinopsis}}</p>
@@ -53,6 +56,7 @@
                   {{else}}
                     <h3>Sin stock</h3>
                   {{/if}}
+                  
                 {{/if}}
             </div>
           </div>

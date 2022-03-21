@@ -11,16 +11,20 @@ class Movie{
     }
  //El metodo puede ser utilizado sin crear una instancia
     static async readAll(){
-        // return await query("SELECT * FROM movies")
-        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie;`)
+        
+        // return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie as idMovieRental1, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP
+        // BY idMovie) as table1 ON movies.idMovie = table1.idMovieRental1 LEFT JOIN (SELECT idMovie as idMovieRental, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovieRental;
+        // `)
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie as idMovieRental1, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP
+        BY idMovieRental1) as table1 ON movies.idMovie = table1.idMovieRental1 LEFT JOIN (SELECT idMovie as idMovieRental2, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovieRental2;
+        `)
+        
     }
     static async readAllOrder(order){
-            //console.log(order)
+            
             // return await query(`SELECT * FROM movies ORDER BY nombre ${order}`)
             return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie ORDER BY movies.nombre ${order};`)
     }
-//USER 1 Pelicula 8
-//SELECT * FROM movies JOIN (SELECT idMovie,SUM(calification) FROM rentals GRoUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie;
 
     static async readAllOrderRating(){
         
