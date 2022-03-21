@@ -23,24 +23,24 @@ class Movie{
     static async readAllOrder(order){
             
             // return await query(`SELECT * FROM movies ORDER BY nombre ${order}`)
-            return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie ORDER BY movies.nombre ${order};`)
+            return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie as idMovieRental1, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovieRental1 LEFT JOIN (SELECT idMovie as idMovieRental2, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovieRental2 ORDER BY movies.nombre ${order};`)
     }
 
     static async readAllOrderRating(){
         
         // return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie,SUM(calification) as rating FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC;`)
         // return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC;`)
-        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie ORDER BY table1.rating DESC;`)
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie as idMovieRental1, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovieRental1 LEFT JOIN (SELECT idMovie as idMovieRental2, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovieRental2 ORDER BY table1.rating DESC;`)
     }
 
     static async readAllOrderMoreViews(){
         // return await query("SELECT * FROM movies LEFT JOIN (SELECT idMovie, COUNT(idRental) as rating FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC")
-        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie ORDER BY table2.views DESC;`)
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie as idMovieRental1, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovieRental1 LEFT JOIN (SELECT idMovie as idMovieRental2, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovieRental2 ORDER BY table2.views DESC;`)
     }
 
     static async searchMovie(nameMovie){
         // return await query(`SELECT * FROM movies WHERE nombre LIKE "%` + nameMovie + `%"`)
-        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie WHERE nombre LIKE "%` + nameMovie + `%" ;`)
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie as idMovieRental1, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovieRental1 LEFT JOIN (SELECT idMovie as idMovieRental2, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovieRental2 WHERE movies.nombre LIKE "%` + nameMovie + `%" ;`)
     }
 
     static async readOne(id){
