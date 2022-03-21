@@ -3,9 +3,11 @@ const Movie = require("../models/Movie")
 class AuthController{
 
     async getHomeView(req, resp){
-        const pictureOfFilms = (await Movie.readAll())
-        
-        return resp.render("home",{formCSS: "css/home.css", documentName: "Home", movies: pictureOfFilms})
+        const movies = (await Movie.readAll()).slice(0,5)
+        const trendingMovies = (await Movie.readAllOrderMoreViews()).slice(1,5)
+        const topRatedMovies = (await Movie.readAllOrderRating()).slice(1,5)
+        return resp.render("home",{formCSS: "css/home.css", documentName: "Home", movies: movies, 
+        topRatedMovies: topRatedMovies, trendingMovies:trendingMovies })
         
     }
 

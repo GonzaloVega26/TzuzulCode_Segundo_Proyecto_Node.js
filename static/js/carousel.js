@@ -1,8 +1,10 @@
-const track = document.querySelector('.track')
+const carouselList = document.querySelectorAll('.carousel')
+carouselList.forEach(carousel=>{
+
+    const track = carousel.querySelector('.track')
 const slides = Array.from(track.children)
-console.log(slides)
-const nextButton = document.querySelector('.button-right')
-const prevButton = document.querySelector('.button-left')
+const nextButton = carousel.querySelector('.button-right')
+const prevButton = carousel.querySelector('.button-left')
 //adding class current-slide for the first element in array
 slides[0].classList.add('current-slide')
 
@@ -42,4 +44,5 @@ prevButton.addEventListener('click', e=>{
     track.style.transform = `translateX(-${amountToMove})`
     currentSlide.classList.remove('current-slide')
     prevSlide.classList.add('current-slide')
+})
 })
