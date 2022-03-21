@@ -75,9 +75,13 @@
       <div class="link">
         <a href="/login" class="link">Have an Account?</a>
       </div>
+       {{#each validation.errors}}
+          <span style="color: red;">{{this}}</span>
+        {{/each}}
       <div>
         <button class="button">Register</button>
       </div>
+     
     </form>
   </div>
 </div>

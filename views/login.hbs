@@ -26,9 +26,14 @@
         <div class="link">
           <a href="/registration" class="link">Not a member?</a>
         </div> 
+        {{#each validation.errors}}
+          <span style="color: red;">{{this}}</span>
+        {{/each}}
         <div>
           <button class="button">Login</button>
         </div>
     </form>
+    
+  
   </div>
 </div>

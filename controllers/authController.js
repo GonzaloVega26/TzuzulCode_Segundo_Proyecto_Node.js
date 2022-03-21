@@ -30,12 +30,6 @@ class AuthController{
                 errors:["Usuario no registrado"]
             }})
         }
-        //TODO: add check for user not found in db
-        // if(user.length === 0){
-        //     return res.render("login",{validation:{succes: false,
-        //         errors:["Usuario no registrado"]
-        //     }})
-        // }
         if(user[0].password!==userCredential.password){
             return res.render("login",{
                 formCSS: "css/loginCSS.css",
