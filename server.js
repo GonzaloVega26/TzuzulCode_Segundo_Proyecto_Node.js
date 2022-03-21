@@ -44,7 +44,58 @@ app.engine(
         const newDate = DateTime.fromJSDate(date);
         return newDate.toFormat("yyyy-MM-dd");
       },
+      controlDate:function(date){
+        const newDate = DateTime.fromJSDate(date)
+        const diff = newDate.diffNow(["minutes","hours","days"]).toObject()
+        if (diff.minutes > 0){
+          return false
+        }
+        else{
+          return true
+        }
+      },
+      validateDate: function(date, today){
+        if (date < today){
+            return true
+        }
+        return false
+      },
+      formatHour: function(date){
+        const newDate = DateTime.fromJSDate(date)
+        const diff = newDate.diffNow(["minutes","hours","days"]).toObject()
+        if(diff.days<0){
+            return `Hace ${-1*diff.days} días`
+        }else if(diff.hours<0){
+            return `Hace ${-1*diff.hours} horas`
+        }else if(diff.minutes<0){
+            return `Hace ${Number.parseInt(-1*diff.minutes)} minutos`
+        }
     },
+    return: function(fecha_inicio,fecha_fin){
+        const f1 = DateTime.fromJSDate(fecha_inicio)
+        const f2 = DateTime.fromJSDate(fecha_fin)
+        const diff={
+            "minutes":f2.minute-f1.minute,
+            "hours": f2.hour-f1.hour,
+            "days": f2.day-f1.day
+        }
+        
+        if(diff.days>0){
+            return `${diff.days} days left to return the film`
+        }else if(diff.hours>0){
+            return `${diff.hours} hours left to return the film`
+        }else if(diff.minutes>0){
+            return `${Number.parseInt(diff.minutes)} minutes left to return the film`
+        }
+    },
+      twoDecimals: function(num){
+            
+        const newNum = Number(num)
+        const aux = newNum.toFixed(2)
+        return aux
+
+      }
+    }
   })
 );
 

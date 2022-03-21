@@ -20,7 +20,8 @@ static async readAll(){
 }
 
 static async readRentalUser(id){
-    return await query("SELECT * FROM rentals, users, movies WHERE rentals.idUser = users.idUser and rentals.idMovie = movies.idMovie and rentals.estado = 0 and rentals.idUser=" + id)
+    // return await query("SELECT * FROM rentals, users, movies WHERE rentals.idUser = users.idUser and rentals.idMovie = movies.idMovie and rentals.estado = 0 and rentals.idUser=" + id)
+    return await query("SELECT * FROM rentals, users, movies WHERE rentals.idUser = users.idUser and rentals.idMovie = movies.idMovie and rentals.idUser=" + id + " ORDER BY rentals.estado ASC")
 }
 
 

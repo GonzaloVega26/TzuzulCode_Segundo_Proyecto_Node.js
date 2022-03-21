@@ -83,11 +83,12 @@ class MovieController{
             return res.redirect("/movies")
         }
         
-        return res.render("register-movie",{formCSS: "css/loginCSS.css",validation,movie:newMovie})
+        return res.render("register-movie",{formCSS: "css/loginCSS.css", validation, movie:newMovie})
     }
 
     async deleteMovieView(req,res){
         const id = req.params.id
+   
         const data = await Movie.delete(id)
         return res.render("movie",{
             formCSS: "/css/loginCSS.css"

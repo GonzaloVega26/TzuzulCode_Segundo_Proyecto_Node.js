@@ -1,9 +1,9 @@
 .profile-info-container {
   display: grid;
   grid-template-columns: 20% 60%;
-
   justify-items: center;
   margin-bottom: 20px;
+  padding-bottom: 270px;
 }
 
 /* Aside */

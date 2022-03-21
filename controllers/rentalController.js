@@ -5,24 +5,30 @@ class RentalController{
 
     async getRentalsView(req, res){
         const data = await Rental.readAll()
+        const date = Date.now();
+        const today = new Date(date);
         //console.log(data);
         return res.render("rentals",{
             formCSS: "/css/loginCSS.css",
             rentals:data,
             hasRentals:data.length > 0,
-            // typeUser: req.session.typeUser
+            typeUser: req.session.typeUser,
+            today: today
         })
     }
 
     async getRentalsUserView(req, res){
         const id = req.params.id
         const data = await Rental.readRentalUser(id)
+        const date = Date.now();
+        const today = new Date(date);
         //console.log(data);
         return res.render("rentals",{
             formCSS: "/css/loginCSS.css",
             rentals:data,
             hasRentals:data.length > 0,
-            // typeUser: req.session.typeUser
+            typeUser: req.session.typeUser,
+            today: today
         })
     }
 

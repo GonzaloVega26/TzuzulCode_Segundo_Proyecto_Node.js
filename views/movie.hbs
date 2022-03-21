@@ -11,7 +11,7 @@
           <option value="value4">Rating</option>
           <option value="value5">More Views</option>
         </select>
-        </div>
+      </div>
       <div class="form-search-container">
         
         <form action="/movies" method="post"> 
@@ -19,8 +19,8 @@
               name="nameMovie"
               id="nameMovie"
               placeholder="Enter the name of the movie to search">
-          <div>
-            <button class="button">Search</button>
+          <div class="button-search">
+            <button class="button"><i class="uil uil-search icon"></i>  Search</button>
           </div>
         </form>
       </div>
@@ -33,21 +33,27 @@
             <img src="{{this.portada}}">
             {{!-- </figure> --}}
             <div class="contenido-card">
-              <h3 id="nameMovie" class="nameMovie">{{this.nombre}}</h3>
+              <h3 id="nameMovie" class="nameMovie">{{this.nombre}} </h3>
               <p>${{this.precio}}</p>
-              {{#if ../typeUser}}
-                <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
-                <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a>
-              {{else}}
-                {{#if this.stock}}
-                  <div class="sinopsis">
-                    <p class="p-sinopsis" >{{this.sinopsis}}</p>
-                  </div>
-                  <a href="/register-rental/{{this.idMovie}}">Alquilar</a>
+                <p> {{#if this.rating}} 
+                    ⭐ {{twoDecimals this.rating}}
+                    {{/if}} 
+                    {{#if this.views}} 
+                      <i class="uil uil-eye"></i></i> {{this.views}}
+                    {{/if}}</p>
+                {{#if ../typeUser}}
+                  <a href="/edit-movie/{{this.idMovie}}" >Editar</a>
+                  <a href="/movies" onclick="DeleteMovie({{this.idMovie}})">Eliminar</a>
                 {{else}}
-                  <h3>Sin stock</h3>
+                  {{#if this.stock}}
+                    <div class="sinopsis">
+                      <p class="p-sinopsis" >{{this.sinopsis}}</p>
+                    </div>
+                    <a href="/register-rental/{{this.idMovie}}">Alquilar</a>
+                  {{else}}
+                    <h3>Sin stock</h3>
+                  {{/if}}
                 {{/if}}
-              {{/if}}
             </div>
           </div>
         {{/each}}

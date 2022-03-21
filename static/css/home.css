@@ -1,12 +1,11 @@
 .general-container {
   height: fit-content;
-  
 }
 .carousel {
   position: relative;
   height: 350px;
   width: 50%;
-  margin: 5px auto 45px auto;
+  margin: 100px auto;
 }
 .division-line{
     margin-top: 5%;

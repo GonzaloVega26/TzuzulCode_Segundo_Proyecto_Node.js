@@ -11,12 +11,13 @@ class Movie{
     }
  //El metodo puede ser utilizado sin crear una instancia
     static async readAll(){
-        return await query("SELECT * FROM movies")
+        // return await query("SELECT * FROM movies")
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie;`)
     }
     static async readAllOrder(order){
             //console.log(order)
-            return await query(`SELECT * FROM movies ORDER BY nombre ${order}`)
-        
+            // return await query(`SELECT * FROM movies ORDER BY nombre ${order}`)
+            return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie ORDER BY movies.nombre ${order};`)
     }
 //USER 1 Pelicula 8
 //SELECT * FROM movies JOIN (SELECT idMovie,SUM(calification) FROM rentals GRoUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie;
@@ -24,15 +25,18 @@ class Movie{
     static async readAllOrderRating(){
         
         // return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie,SUM(calification) as rating FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC;`)
-        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC;`)
+        // return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC;`)
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie ORDER BY table1.rating DESC;`)
     }
 
     static async readAllOrderMoreViews(){
-        return await query("SELECT * FROM movies LEFT JOIN (SELECT idMovie, COUNT(idRental) as rating FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC")
+        // return await query("SELECT * FROM movies LEFT JOIN (SELECT idMovie, COUNT(idRental) as rating FROM rentals GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie ORDER BY table1.rating DESC")
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie ORDER BY table2.views DESC;`)
     }
 
     static async searchMovie(nameMovie){
-        return await query(`SELECT * FROM movies WHERE nombre LIKE "%` + nameMovie + `%"`)
+        // return await query(`SELECT * FROM movies WHERE nombre LIKE "%` + nameMovie + `%"`)
+        return await query(`SELECT * FROM movies LEFT JOIN (SELECT idMovie, SUM(calification) / COUNT(idRental) as rating FROM rentals WHERE calification IS NOT NULL GROUP BY idMovie) as table1 ON movies.idMovie = table1.idMovie LEFT JOIN (SELECT idMovie, COUNT(idRental) as views FROM rentals GROUP BY idMovie) as table2 ON movies.idMovie = table2.idMovie WHERE nombre LIKE "%` + nameMovie + `%" ;`)
     }
 
     static async readOne(id){
@@ -59,7 +63,7 @@ class Movie{
     }
 
     validate(){
-        let result = {sucess:true,errors:[]}
+        let result = {sucess: true, errors:[]}
         if(!(this.nombre && this.portada && this.precio && this.stock && this.sinopsis)){
             result.sucess = false
             result.errors.push("Rellena todos los campos")
